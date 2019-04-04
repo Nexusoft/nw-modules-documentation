@@ -6,6 +6,8 @@ Next, you need to get a copy of the module that you want to install. Currently N
 
 Once you already have a copy of the module that you want to install, open your Nexus Wallet, navigate to the Settings page (via the navigation bar at the bottom), switch to Modules tab, you'll see an "Add module" section where you can either browse and select the module or drag and drop it there to install. If the module is in `.zip` or `.tar.gz` format then you can install from that file directly. If not, you need to extract the module to a directory and then install from that directory.
 
+![Install a Nexus Module](./install-module.PNG)
+
 If the module is well-formed, a Module Details modal will pop up showing you the detailed information about the module you're going to install. After reviewing all the module details, carefully reading the warning at the modal's bottom, and making sure you want to install the module, you can click "Install Module" to start installing it. A success message will pop up once the installation is done successfully.
 
 In some cases, the "Install Module" will be disabled if the module is invalid. Those reasons for an invalid module include:
