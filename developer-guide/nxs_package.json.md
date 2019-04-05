@@ -4,7 +4,7 @@
 
 `nxs_package.json` contains most meta-data about the module, and helps Nexus Wallet identify if a directory is a module or not.
 
-As the name suggests, `nxs_package.json` is inspired by [`npm`'s `package.json`](https://docs.npmjs.com/files/package.json), plays a pretty similar role in Nexus modules as `package.json` does in `npm` packages, and has many similar fields as in `package.json`.
+As the name suggests, `nxs_package.json` is inspired by [`npm`'s `package.json`](https://docs.npmjs.com/files/package.json) file, plays a pretty similar role in Nexus modules as `package.json` does in `npm` packages, and has many similar fields as in `package.json`.
 
 ## Schema
 
