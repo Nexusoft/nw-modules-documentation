@@ -11,13 +11,13 @@ However, if you aim for the best convenience, compatibility, and the most identi
 - [React](https://reactjs.org/) for javascript GUI library.
 - [Redux](https://redux.js.org/) for app state manager.
 - [Emotion](https://emotion.sh) for CSS styling.
-- [ReactRouter](https://reacttraining.com/react-router/) for navigations.
+- [ReactRouter](https://reacttraining.com/react-router/) for app routing solution.
 
 If you use the libraries listed above in your module, you won't need to add them to your `package.json` dependencies, because the base Nexus wallet will pass these libraries to your module through an injected global variable, along with some utility functions and components built on these libraries (mostly React and Emotion). As a result, you will be able to reduce your module size by not having to include these libraries in your module, speed up your development by not having to reinvent the wheel, and ensure a more consistent UI with the base wallet by reusing the same UI components that the base wallet uses.
 
 ## Quick Start
 
-If you want to quickly set up your new module code base, you can check out these [examples](#examples-and-boilerplates), fork one of them, and modify the code to achieve the functionality as you wish.
+If you want to quickly set up your new module code base, you can check out the [examples and boilerplates](#examples-and-boilerplates), fork one of them, and modify the code to achieve the functionality as you wish.
 
 ## Requirements for a valid module
 
@@ -31,14 +31,6 @@ A module (either in a directory or packaged as an archive) is considered valid i
 If your module is not valid, Nexus Wallet users will not be able to install it.
 
 If somehow a user has already installed your module, but your module becomes invalid at the moment user opens the wallet (for example your repository is then deleted), your module will not be loaded.
-
-## Nexus module specification
-
-Nexus module specification is the collection of all the programming interfaces for communicating between the base Nexus wallet and Nexus modules. Nexus module specification comprises of:
-
-- File schemas - including schemas for [nxs_package.json](./nxs_package.json.md) and [repo_info.json](./repo_info.json.md).
-- [Injected global variable](./InjectedGlobalVariable.md).
-- [IPC messages API](./IPCMessagesAPI.md).
 
 ## Get your source code verified
 
@@ -56,6 +48,6 @@ One easy way that we recommend is to [create a release on github](https://help.g
 
 Currently there are 2 Nexus module example repositories that you can also use as boilerplates:
 
-- [minimal-module-example](https://github.com/Nexusoft/minimal_module_example) - A minimal "Hello World" type of module to demonstrate what a simple module needs at minimum.
+- [minimal-module-example](https://github.com/Nexusoft/minimal_module_example) - A minimal "Hello World" type of module to demonstrate what a simple Nexus module needs at minimum.
 
 - [react-module-example](https://github.com/Nexusoft/react_module_example) - An example module using React and webpack
