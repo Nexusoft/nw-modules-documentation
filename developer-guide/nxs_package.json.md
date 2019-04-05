@@ -40,9 +40,9 @@ The version of your module.
 - Type: `string`
 - Constraints: must be a valid [semver](https://semver.org/) version
 
-The version of the [Nexus module specification](./nexus-module-specification) that this version of your module was built on.
+The version of the [Nexus Module Specifications](./nexus-module-specifications) that this version of your module was built on.
 
-If this `specVersion` is lower than the lowest Nexus Module Specification version that user's wallet supports, your module will be marked "invalid" and will not work.
+If this `specVersion` is lower than the lowest Spec version that user's wallet supports, your module will be marked "invalid" and will not work.
 
 ### `type`
 
@@ -50,7 +50,7 @@ If this `specVersion` is lower than the lowest Nexus Module Specification versio
 - Type: `string`
 - Constraints: enumerable [`page`, `page-panel`]
 
-The type of your module. This decides how your module will be used in the wallet.
+The type of your module. This decides how your module will be used in the wallet. See [Module types](./module-types.md) for more details.
 
 ### `files`
 
