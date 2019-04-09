@@ -46,8 +46,10 @@ One easy way that we recommend is to [create a release on github](https://help.g
 
 ## Examples and boilerplates
 
-Currently there are 2 Nexus module example repositories that you can also use as boilerplates:
+Currently there are 3 Nexus module example repositories that you can also use as boilerplates:
 
-- [minimal-module-example](https://github.com/Nexusoft/minimal_module_example) - A minimal "Hello World" type of module to demonstrate what a simple Nexus module needs at minimum.
+- [minimal_module_example](https://github.com/Nexusoft/minimal_module_example) - A minimal "Hello World" type of module to demonstrate what a simple Nexus module needs at minimum.
 
-- [react-module-example](https://github.com/Nexusoft/react_module_example) - An example module using React and webpack
+- [simple_react_module_example](https://github.com/Nexusoft/simple_react_module_example) - A simple example module using React
+
+- [react-redux_module_example](https://github.com/Nexusoft/react_redux_module_example) - A little more complex module built on React and Redux, showcasing some advanced features that Nexus Modules support
