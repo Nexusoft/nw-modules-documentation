@@ -2,9 +2,9 @@
 
 In order to install a Nexus module, first you need to have the Nexus Wallet installed and running on your computer. You can [download the latest version of Nexus Wallet here](https://github.com/Nexusoft/NexusInterface/releases/latest) if you haven't.
 
-Next, you need to get a copy of the module that you want to install. Currently Nexus hasn't had a central place that hosts all the published modules (though we may have it in the future), so it's up to the module developers how the modules are delivered to you. It's also up the the module developers which format the modules are packaged in, but it's very likely that they are in archive formats (`.zip` for example).
+Next, you need to get a copy of the module that you want to install. Currently Nexus hasn't had a central place that hosts all the published modules (though we may have it in the future), so it's up to the module developers how the modules are delivered to you. It's also up the the module developers which format the modules are packaged in, but it's very likely that they are in archive formats (_.zip_ for example).
 
-Once you already have a copy of the module that you want to install, open your Nexus Wallet, navigate to the Settings page (via the navigation bar at the bottom), switch to Modules tab, you'll see an "Add module" section where you can either browse and select the module or drag and drop it there to install. If the module is in `.zip` or `.tar.gz` format then you can install from that file directly. If not, you need to extract the module to a directory and then install from that directory.
+Once you already have a copy of the module that you want to install, open your Nexus Wallet, navigate to the Settings page (via the navigation bar at the bottom), switch to Modules tab, you'll see an "Add module" section where you can either browse and select the module or drag and drop it there to install. If the module is in _.zip_ or _.tar.gz_ format then you can install from that file directly. If not, you need to extract the module to a directory and then install from that directory.
 
 ![Install a Nexus Module](./install-module.PNG)
 

@@ -4,9 +4,9 @@ In this guide, you will find the instructions on how to write your own [Nexus mo
 
 ## What technology can I use to develop my Nexus modules?
 
-Nexus Wallet is a web-based desktop application built on Electron, therefore Nexus modules can be built on the **web technology**, that is HTML, CSS, and Javascript. You, as a module developer, have the total freedom to choose what web frameworks or libraries they like to use to build their modules, for example you can use React, Angular or Vue for javascript framework, LESS, SASS, or Stylus for CSS preprocessors,... or you can even just use plain HTML/CSS/Javascript if it's what you prefer.
+Nexus Wallet is a web-based desktop application built on Electron, therefore Nexus modules are also based on the **web technology**, that is HTML, CSS, and Javascript. You, as a module developer, have the total freedom to choose what web frameworks or libraries they like to use to build their modules, for example you can use React, Angular or Vue for javascript framework, LESS, SASS, or Stylus for CSS preprocessors,... or you can even just use plain HTML/CSS/Javascript if it's what you prefer.
 
-However, if you aim for the best convenience, compatibility, and the most identical look with the base wallet, it is recommended that you use the same libraries that are used in the base wallet, namely:
+However, if you aim for the best convenience, compatibility, and the most consistent UI compared to the base wallet, it is recommended that you use the same libraries that are used in the base wallet, namely:
 
 - [React](https://reactjs.org/) for javascript GUI library.
 - [Redux](https://redux.js.org/) for app state manager.
