@@ -10,7 +10,7 @@
 
 Nexus Module Specifications versions (or just **Spec versions**) are independent from the Nexus Wallet versions. Sometimes Nexus Wallet gets updated and has a new version but Nexus Module Specification remains unchanged and its version stays the same.
 
-In your module, you can get the current Spec version of user's wallet from the `specVersion` field of the [injected global variable](./InjectedGlobalVariable.md).
+In your module, you can get the current Spec version of user's wallet from the `specVersion` field of the [injected global variable](./injected-global-variable.md).
 
 Any version of Nexus Wallet has:
 

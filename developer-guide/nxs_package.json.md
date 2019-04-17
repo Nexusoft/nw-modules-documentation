@@ -1,6 +1,6 @@
 # nxs_package.json
 
-`nxs_package.json` is a mandatory file that __all__ Nexus modules __must__ contain, and must be located in the top-level directory of the module.
+`nxs_package.json` is a mandatory file that **all** Nexus modules **must** contain, and must be located in the top-level directory of the module.
 
 `nxs_package.json` contains most meta-data about the module, and helps Nexus Wallet identify if a directory is a module or not.
 
@@ -11,7 +11,7 @@ As the name suggests, `nxs_package.json` is inspired by [`npm`'s `package.json`]
 ### `name`
 
 - **Mandatory**
-- Type: `string` 
+- Type: `string`
 - Constraints: only accepts lowercase letters, digits, underscores (`_`) and dashes (`-`)
 
 This will be used as the unique identifier of your module. If more than one modules with the same `name` are installed in a wallet, only one of them will work. Currently there hasn't been a central "module store" that hosts all the Nexus modules available, avoiding naming collision must be taken care by the module developers yourself. So when you need to name your module, please be aware if there is already an existing module with the same name.
@@ -24,7 +24,7 @@ This will be used as the unique identifier of your module. If more than one modu
 
 A user-friendly name to be displayed on the GUI and most other places where your module name is needed.
 
-Should not be way too different from the `name` field.
+Should not be too different from the `name` field.
 
 ### `version`
 
@@ -48,18 +48,33 @@ If this `specVersion` is lower than the lowest Spec version that user's wallet s
 
 - **Mandatory**
 - Type: `string`
-- Constraints: enumerable [`page`, `page-panel`]
+- Constraints: possible values are `app` (the only supported module type currently)
 
 The type of your module. This decides how your module will be used in the wallet. See [Module types](./module-types.md) for more details.
+
+### `options`
+
+- Optional
+- Type: `object`
+- Constraints:
+  - Available options:
+  ```
+  {
+    // Whether the module's webview is wrapped inside a panel
+    // Only available with `app` type modules
+    wrapInPanel: boolean
+  }
+  ```
 
 ### `files`
 
 - **Mandatory**
 - Type: `string[]`
-- Constraints: 
+- Constraints:
+
   - All elements are [internal file paths](#internal-file-paths)
   - Cannot have the same path with one of the following files: `nxs_package.json`, `repo_info.json`, `storage.json`
-  
+
 This is where you should list ALL the files needed to run your module (without wildcards). Only those files that present in this list will be copied over when users install your module their wallets, so please don't miss any file.
 
 ### `description`
@@ -94,7 +109,7 @@ If the `entry` field is not specified, by default the wallet will look for a fil
 
 - Optional
 - Type: `object`
-- Constraints: 
+- Constraints:
   - Object schema:
   ```
   {
@@ -110,6 +125,6 @@ Information about the module's author.
 
 ### Internal file paths
 
-- Must be relative paths, absolute paths are not allowed. 
-- Wildcards are not allowed. 
+- Must be relative paths, absolute paths are not allowed.
+- Wildcards are not allowed.
 - Parent directory notations (`../`) are not allowed.
