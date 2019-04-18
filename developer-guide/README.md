@@ -1,6 +1,6 @@
 # Nexus Module Developer Guide
 
-In this guide, you will find the instructions on how to write your own [Nexus module](./README.md).
+In this guide, you will find the instructions on how to write your own [Nexus module](../README.md).
 
 ## What technology can I use to develop my Nexus modules?
 
