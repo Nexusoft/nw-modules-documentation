@@ -10,7 +10,7 @@
     url: /developer-guide/
     sublinks:
 
-      - title: Nexus module specifications.html
+      - title: Nexus module specifications
         url: /developer-guide/module-types.html
       - title: Module types
         url: /developer-guide/module-types.html
