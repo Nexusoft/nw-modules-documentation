@@ -1,12 +1,11 @@
 <!-- This finds the current page so it can be highlighted. -->
 
 {% for entry in site.data.navigation %}
-  {% capture fullurl %}{{ site.baseurl }}{{ entry.url }}{% endcapture %}
   {% if entry.url == page.url %}
-    {% assign current_page = fullurl %}
+    {% assign current_page = entry.url %}
     {% break %}
-  {% elsif page.url contains fullurl %}
-    {% assign current_page = fullurl %}
+  {% elsif page.url contains entry.url %}
+    {% assign current_page = entry.url %}
   {% endif %}
 {% endfor %}
 
@@ -14,7 +13,6 @@
 <nav class="side-nav">
   <h3>Table of contents</h3>
   <div>page.url {{page.url}}</div>
-  <div>fullurl {{fullurl}}</div>
   <div>current_page {{current_page}}</div>
 
   <ul>
