@@ -12,6 +12,12 @@
 
       - title: Nexus module specifications
         url: /developer-guide/module-types.html
+      - title: nxs_package.json
+        url: /developer-guide/nxs_package.json.html
+      - title: repo_info.json
+        url: /developer-guide/repo_info.json.html
+      - title: Icons
+        url: /developer-guide/icons.html
       - title: Module types
         url: /developer-guide/module-types.html
         sublinks:
@@ -24,8 +30,3 @@
             url: /developer-guide/app-modules/injected-global-variable.html
           - title: IPC messages
             url: /developer-guide/app-modules/ipc-messages-api.html
-
-      - title: nxs_package.json
-        url: /developer-guide/nxs_package.json.html
-      - title: repo_info.json
-        url: /developer-guide/repo_info.json.html
