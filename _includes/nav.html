@@ -2,18 +2,20 @@
 
 {% for entry in site.data.navigation %}
   {% capture fullurl %}{{ site.baseurl }}{{ entry.url }}{% endcapture %}
-    {% if fullurl == page.url %}
-      {% assign current_page = fullurl %}
-      {% break %}
-    {% elsif page.url contains fullurl %}
-      {% assign current_page = fullurl %}
-    {% endif %}
+  {% if fullurl == page.url %}
+    {% assign current_page = fullurl %}
+    {% break %}
+  {% elsif page.url contains fullurl %}
+    {% assign current_page = fullurl %}
+  {% endif %}
 {% endfor %}
 
 <!-- Then we build the nav bar. -->
 <nav class="side-nav">
   <h3>Table of contents</h3>
-  {{current_page}}
+  <div>{{page.url}}</div>
+  <div>{{fullurl}}</div>
+  <div>{{current_page}}</div>
 
   <ul>
     {% for entry in site.data.navigation %}
