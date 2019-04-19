@@ -5,9 +5,9 @@
   {% elsif entry.url contains page.url %}
     {% assign active_page = entry.url %}
   {% endif %}
-{% endfor %}
 
-{% if entry.sublinks %}
-  {% assign entries = entry.sublinks %}
-  {% include active-page.html %}
-{% endif %}
+  {% if entry.sublinks %}
+    {% assign entries = entry.sublinks %}
+    {% include active-page.html %}
+  {% endif %}
+{% endfor %}
