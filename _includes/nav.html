@@ -1,21 +1,11 @@
 <!-- This finds the current page so it can be highlighted. -->
-
-{% for entry in site.data.navigation %}
-  {% if entry.url == page.url %}
-    <div>{{entry.url}} == {{page.url}}</div>
-    {% assign current_page = entry.url %}
-    {% break %}
-  {% elsif entry.url contains page.url %}
-    <div>{{entry.url}} contains {{page.url}}</div>
-    {% assign current_page = entry.url %}
-  {% endif %}
-{% endfor %}
+{% assign entries = site.data.navigation %}
 
 <!-- Then we build the nav bar. -->
 <nav class="side-nav">
   <h3>Table of contents</h3>
   <div>page.url {{page.url}}</div>
-  <div>current_page {{current_page}}</div>
+  <div>active_page {{active_page}}</div>
 
   <ul>
     {% for entry in site.data.navigation %}
