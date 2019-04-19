@@ -27,6 +27,7 @@ section {
 
   ul {
     padding-left: 20px;
+    margin-bottom: 0;
   }
 
   & > ul {
@@ -35,5 +36,9 @@ section {
 
   .current {
     font-weight: bold;
+  }
+
+  li {
+    margin-top: 3px
   }
 }
