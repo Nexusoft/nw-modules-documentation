@@ -1,10 +1,13 @@
-- title: How to install
-  url: /how-to-install
+- title: Nexus Modules
+  url: /
 
-- title: Developer Guide
-  url: /developer-guide
-  sublinks:
-    - title: nxs_package.json
-      url: /developer-guide/nxs_package.json
-    - title: Module types
-      url: /developer-guide/module-types
+  - title: How to install
+    url: /how-to-install.html
+
+  - title: Developer Guide
+    url: /developer-guide/
+    sublinks:
+      - title: nxs_package.json
+        url: /developer-guide/nxs_package.json.html
+      - title: Module types
+        url: /developer-guide/module-types.html
