@@ -4,7 +4,7 @@
   {% if entry.url == page.url %}
     {% assign current_page = entry.url %}
     {% break %}
-  {% elsif page.url contains entry.url %}
+  {% elsif entry.url contains page.url %}
     {% assign current_page = entry.url %}
   {% endif %}
 {% endfor %}

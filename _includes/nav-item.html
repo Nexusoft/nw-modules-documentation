@@ -5,13 +5,11 @@
   {% assign current = null %}
 {% endif %}
 
-{% assign sublinks = entry.sublinks %}
-
 <li>
   <a{{ current }} href="{{ site.baseurl }}{{ entry.url }}">{{ entry.title }}</a>
-  {% if sublinks %}
+  {% if entry.sublinks %}
   <ul>
-    {% for entry in sublinks %}
+    {% for entry in entry.sublinks %}
       {% include nav-item.html %}
     {% endfor %}
   </ul>
