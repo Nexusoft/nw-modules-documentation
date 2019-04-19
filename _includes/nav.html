@@ -2,9 +2,11 @@
 
 {% for entry in site.data.navigation %}
   {% if entry.url == page.url %}
+    <div>{{entry.url}} == {{page.url}}</div>
     {% assign current_page = entry.url %}
     {% break %}
   {% elsif entry.url contains page.url %}
+    <div>{{entry.url}} contains {{page.url}}</div>
     {% assign current_page = entry.url %}
   {% endif %}
 {% endfor %}
