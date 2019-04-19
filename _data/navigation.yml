@@ -1,0 +1,10 @@
+- title: How to install
+  url: /how-to-install
+
+- title: Developer Guide
+  url: /developer-guide
+  sublinks:
+    - title: nxs_package.json
+      url: /developer-guide/nxs_package.json
+    - title: Module types
+      url: /developer-guide/module-types
