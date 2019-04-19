@@ -7,8 +7,8 @@
 
 {% assign sublinks = entry.sublinks %}
 
-<li{{ current }}>
-  <a href="{{ site.baseurl }}{{ entry.url }}">{{ entry.title }}</a>
+<li>
+  <a{{ current }} href="{{ site.baseurl }}{{ entry.url }}">{{ entry.title }}</a>
   {% if sublinks %}
   <ul>
     {% for entry in sublinks %}
