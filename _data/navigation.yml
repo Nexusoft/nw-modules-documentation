@@ -14,12 +14,17 @@
         url: /developer-guide/module-types.html
       - title: Module types
         url: /developer-guide/module-types.html
+        sublinks:
+          
         - title: App modules
           url: /developer-guide/app-type/
+          sublinks:
+            
           - title: NEXUS global variable
             url: /developer-guide/app-type/injected-global-variable.html
           - title: IPC messages
             url: /developer-guide/app-type/ipc-messages-api.html
+            
       - title: nxs_package.json
         url: /developer-guide/nxs_package.json.html
       - title: repo_info.json
