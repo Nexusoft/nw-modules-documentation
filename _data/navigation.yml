@@ -1,6 +1,6 @@
 - title: Nexus Modules
   url: /
-
+  sublinks:
   - title: How to install
     url: /how-to-install.html
 
