@@ -1,0 +1,19 @@
+{% if entry.url == current_page %}
+  {% assign current = ' class="current"' %}
+{% else %}
+  <!-- We have to declare it 'null' to ensure it doesn't propagate. -->
+  {% assign current = null %}
+{% endif %}
+
+{% assign sublinks = entry.sublinks %}
+
+<li{{ current }}>
+  <a href="{{ site.baseurl }}{{ entry.url }}">{{ entry.title }}</a>
+  {% if sublinks %}
+  <ul>
+    {% for entry in sublinks %}
+      {% include nav-item.html %}
+    {% endfor %}
+  </ul>
+  {% endif %}
+</li>
