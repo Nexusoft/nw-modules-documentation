@@ -1,28 +1,26 @@
-- title: Nexus Wallet Modules
+- title: Introduction
   url: /
+- title: How to install
+  url: /how-to-install.html
+- title: Module security
+  url: /security.html
+- title: Developer Guide
+  url: /developer-guide/
   sublinks:
 
-  - title: How to install
-    url: /how-to-install.html
-  - title: Module security
-    url: /security.html
-  - title: Developer Guide
-    url: /developer-guide/
-    sublinks:
-
-      - title: Module specifications
-        url: /developer-guide/module-specifications.html
-      - title: nxs_package.json
-        url: /developer-guide/nxs_package.json.html
-      - title: repo_info.json
-        url: /developer-guide/repo_info.json.html
-      - title: Icons
-        url: /developer-guide/icons.html
-      - title: app (Module type)
-        url: /developer-guide/app-modules/
-        sublinks:
-          
-        - title: NEXUS global variable
-          url: /developer-guide/app-modules/nexus-global-variable.html
-        - title: IPC messages
-          url: /developer-guide/app-modules/ipc-messages.html
+    - title: Module specifications
+      url: /developer-guide/module-specifications.html
+    - title: nxs_package.json
+      url: /developer-guide/nxs_package.json.html
+    - title: repo_info.json
+      url: /developer-guide/repo_info.json.html
+    - title: Icons
+      url: /developer-guide/icons.html
+    - title: app (Module type)
+      url: /developer-guide/app-modules/
+      sublinks:
+        
+      - title: NEXUS global variable
+        url: /developer-guide/app-modules/nexus-global-variable.html
+      - title: IPC messages
+        url: /developer-guide/app-modules/ipc-messages.html
