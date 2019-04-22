@@ -2,6 +2,10 @@
 
 In this guide, you will find the instructions on how to write your own [Nexus module](../README.md).
 
+## Quick Start
+
+If you want to quickly set up your new module code base, you can check out the [examples and boilerplates](#examples-and-boilerplates), fork one of them, and modify the code to achieve the functionality as you wish.
+
 ## What technology can I use to develop my Nexus modules?
 
 Nexus Wallet is a web-based desktop application built on Electron, therefore Nexus modules are also based on the **web technology**, that is HTML, CSS, and Javascript. You, as a module developer, have the total freedom to choose what web frameworks or libraries they like to use to build their modules, for example you can use React, Angular or Vue for javascript framework, LESS, SASS, or Stylus for CSS preprocessors,... or you can even just use plain HTML/CSS/Javascript if it's what you prefer.
@@ -14,10 +18,6 @@ However, if you aim for the best convenience, compatibility, and the most consis
 - [ReactRouter](https://reacttraining.com/react-router/) for app routing solution.
 
 If you use the libraries listed above in your module, you won't need to add them to your `package.json` dependencies, because the base Nexus wallet will pass these libraries to your module through an injected global variable, along with some utility functions and components built on these libraries (mostly React and Emotion). As a result, you will be able to reduce your module size by not having to include these libraries in your module, speed up your development by not having to reinvent the wheel, and ensure a more consistent UI with the base wallet by reusing the same UI components that the base wallet uses.
-
-## Quick Start
-
-If you want to quickly set up your new module code base, you can check out the [examples and boilerplates](#examples-and-boilerplates), fork one of them, and modify the code to achieve the functionality as you wish.
 
 ## Requirements for a valid module
 
