@@ -2,9 +2,9 @@
 
 ## Prerequisites
 
-In order to install a [Nexus Wallet Module](./README.md), first you need to have the Nexus Wallet installed and running on your computer. You can [download the latest version of Nexus Wallet here](https://github.com/Nexusoft/NexusInterface/releases/latest) if you haven't.
+In order to install a [Nexus Wallet Module](./README.md), first you need to have the Nexus Wallet installed and running on your computer. [Download the latest version of Nexus Wallet](https://github.com/Nexusoft/NexusInterface/releases/latest) if you haven't.
 
-Next, you need to get a copy of the module that you want to install. Currently Nexus hasn't had a central place that hosts all the published modules (though we may have it in the future), so it's up to the module developers how the modules are delivered to you. It's also up the the module developers which format the modules are packaged in, but it's very likely that they are in archive formats (_.zip_ for example).
+Next, you need to get a copy of the module that you want to install. Currently Nexus hasn't had a central place that hosts all the published modules (though we may have it in the future), so it's up to the module developers how the modules are delivered to you. It's also up the the module developers which format the modules are packaged in, but it's very likely that they are in an archive format (_.zip_ for example).
 
 ## Install the module
 
@@ -22,4 +22,4 @@ In some cases, the "Install Module" button will be disabled if the module is inv
 
 2. The module doesn't have an open source repository, or the repository is no longer online, or the repository is not verified (by the Nexus team) to be the real source code of the module you're going to install. This is one of the security constraints to prevent the possibility that attackers can put malicious code into their modules. Because all the modules are enforced to be open source, everyone (including the Nexus team) can inspect their source code and find out if it is malicious.
 
-However, this constraint might be troublesome when you're developing your own modules. You cannot push your code to the repository and get the verification signature everytime you make just a little change. In that case, you can go to Settings/Application, turn on "Developer Mode", then turn off the "Only allow open source modules" option. You can now run your module for testing on your wallet. Please keep in mind that this settings is only for developing your own modules. If you turn this feature off and install a module not written by yourself without the open source verifications, you will be totally at your own risk and absolutely no one but you would take responsibilities for the consequences in case that the module turns out to be malicious.
+However, this constraint might be troublesome when you're developing your own modules. You cannot push your code to the repository and get the verification signature everytime you make just a little change. In that case, you can go to Settings/Application, turn on "Developer Mode", then turn off the "Only allow open source modules" option. You can now run your module for testing on your wallet. Please keep in mind that this settings is only for developing your own modules. If you turn this feature off and install a module not written by yourself without the open source verifications, you will be **totally at your own risk** and **absolutely no one but you** would take responsibilities for the consequences in case that the module turns out to be malicious.

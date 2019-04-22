@@ -18,7 +18,7 @@
         url: /developer-guide/repo_info.json.html
       - title: Icons
         url: /developer-guide/icons.html
-      - title: "Module type: `app`"
+      - title: app (Module type)
         url: /developer-guide/app-modules/
         sublinks:
           
