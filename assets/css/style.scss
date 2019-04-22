@@ -51,11 +51,11 @@ section {
     font-weight: bold;
 
     &:not(:hover) {
-      color: #ffdd44;
+      background: #333;
     }
   }
 
   li {
-    margin-top: 3px
+    padding: 3px 6px;
   }
 }

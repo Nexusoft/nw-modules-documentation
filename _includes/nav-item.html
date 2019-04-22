@@ -5,8 +5,8 @@
   {% assign current = null %}
 {% endif %}
 
-<li>
-  <a{{ current }} href="{{ site.baseurl }}{{ entry.url }}">{{ entry.title }}</a>
+<li{{ current }}>
+  <a href="{{ site.baseurl }}{{ entry.url }}">{{ entry.title }}</a>
   {% if entry.sublinks %}
   <ul>
     {% for entry in entry.sublinks %}
