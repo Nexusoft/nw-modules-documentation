@@ -49,6 +49,10 @@ section {
 
   .current {
     font-weight: bold;
+
+    &:not(:hover) {
+      color: #ffdd44;
+    }
   }
 
   li {

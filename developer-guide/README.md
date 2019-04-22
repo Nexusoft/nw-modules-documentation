@@ -1,16 +1,16 @@
-# Nexus Module Developer Guide
+# Nexus Wallet Module Developer Guide
 
-In this guide, you will find the instructions on how to write your own [Nexus module](../README.md).
+In this guide, you will find the instructions on how to write your own [Nexus Wallet Modules](../README.md).
 
 ## Quick Start
 
-If you want to quickly set up your new module code base, you can check out the [examples and boilerplates](#examples-and-boilerplates), fork one of them, and modify the code to achieve the functionality as you wish.
+If you want to quickly set up your new module code base, you can check out some [examples and boilerplates](#examples-and-boilerplates), fork one of those repositories, and modify the code to achieve the functionality however you'd like.
 
-## What technology can I use to develop my Nexus modules?
+## What programming languages can I use to build my modules?
 
-Nexus Wallet is a web-based desktop application built on Electron, therefore Nexus modules are also based on the **web technology**, that is HTML, CSS, and Javascript. You, as a module developer, have the total freedom to choose what web frameworks or libraries they like to use to build their modules, for example you can use React, Angular or Vue for javascript framework, LESS, SASS, or Stylus for CSS preprocessors,... or you can even just use plain HTML/CSS/Javascript if it's what you prefer.
+Nexus Wallet is a web-based desktop application built on Electron, therefore Nexus Wallet Modules can also be built using the **web technology**, i.e. HTML, CSS, and Javascript. You, as a module developer, have the total freedom to choose what web frameworks or libraries you like to use to build their modules, for example you can use either React, Angular or Vue for UI logic, LESS, SASS, or Stylus for styling,... or you can even just use plain HTML/CSS/Javascript if that's what you prefer.
 
-However, if you aim for the best convenience, compatibility, and the most consistent UI compared to the base wallet, it is recommended that you use the same libraries that are used in the base wallet, namely:
+However, if you aim for the best convenience, compatibility, and the most consistent look and feel compared to the base wallet, it is highly recommended that you use the same libraries (not necessarily all) that are used in the base wallet, namely:
 
 - [React](https://reactjs.org/) for javascript GUI library.
 - [Redux](https://redux.js.org/) for app state manager.
