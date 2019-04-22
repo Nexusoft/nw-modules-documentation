@@ -54,9 +54,6 @@ section {
 
   .current {
     font-weight: bold;
-
-    &:not(:hover) {
-      background: #333;
-    }
+    background: #333;
   }
 }
