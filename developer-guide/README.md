@@ -32,6 +32,12 @@ If your module is not valid, Nexus Wallet users will not be able to install it.
 
 If somehow a user has already installed your module, but your module becomes invalid at the moment user opens the wallet (for example your repository is then deleted), your module will not be loaded.
 
+## Module types
+
+Module types are defined in the `type` field of each module's [nxs_package.json](./nxs_package.json.md) file. Modules may interact with the base wallet differently depending on the module types. 
+
+At the moment there is only one supported module type that is [`app`](./app-modules). More types, such as `theme`, will likely be added in the future.
+
 ## Get your source code verified
 
 ## Packaging
