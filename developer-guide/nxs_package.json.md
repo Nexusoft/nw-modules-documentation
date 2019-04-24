@@ -91,9 +91,7 @@ A brief description about your module.
 - Type: `string`
 - Constraints: [internal file paths](#internal-file-paths)
 
-Path to the entry file of your module. The type of entry file depends on the module type, for example, if your module is of type `page` or `page-panel`, your `entry` file must be in `.html`.
-
-If the `entry` field is not specified, the wallet will look for the default entry file name depending on the module type.
+Path to the entry file of your module. The type of entry file depends on the module type. If your module is of type `app`, your `entry` file must be in `.html` format. See [HTML entry file](./app-modules#html-entry-file) section for more details.
 
 ### `icon`
 
@@ -101,9 +99,7 @@ If the `entry` field is not specified, the wallet will look for the default entr
 - Type: `string`
 - Constraints: [internal file paths](#internal-file-paths)
 
-Path to the icon of you module. Currently there are 2 formats `.svg` and `.png` are supported for module icons.
-
-If the `entry` field is not specified, by default the wallet will look for a file named `icon.svg`, if still not found, it will look for `icon.png` (both in the top level directory of your module). If none of the above are found, a default icon will be used.
+Path to the icon of you module. See [Module icon](./module-icon.md) for more details.
 
 ### `author`
 
