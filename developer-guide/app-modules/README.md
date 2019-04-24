@@ -4,9 +4,15 @@
 
 ## `<webview>` tag
 
-Technically, when an `app` module is opened, all the module code and UI will be embedded in a [`<webview>` tag](https://electronjs.org/docs/api/webview-tag). `webview` ensures that the module code execution environment is isolated from the base wallet for better security.
+Technically, when an `app` module is opened, all the module code and UI will be embedded in a [`<webview>` tag](https://electronjs.org/docs/api/webview-tag). A `<webview>` tag works almost similarly to an `<iframe>` tag, but `webview` runs in a separate process than the base wallet. `webview` ensures that the module code execution environment is isolated from the base wallet for better security.
 
 Since the module code is isolated inside a `webview`, it needs some ways to communicate with the base wallet to do useful things, such as to receive wallet data, do RPC calls, or get the common styles and current theme from the base wallet so that the module UI blends well into the wallet UI around. [`NEXUS` global variable](./nexus-globalvariable.md) exists for that reason. It is the bridge between your module and the base wallet, provides you with all the necessary libraries, utilities, common components, and methods for interacting with the base wallet. See [`NEXUS` global variable](./nexus-globalvariable.md) for more details.
+
+## HTML entry file
+
+Just like a regular web page, `webview` needs a HTML file as the entry to start loading all your module code. Javascript and CSS code can then be linked from the HTML entry file.
+
+By default, Nexus Wallet will look for a file named `index.html` in your module's root directory to load and use as the entry file. You can also set a custom path to your entry file by setting the `entry` field in your [`nxs_package.json`](../nxs_package.json.md) file.
 
 ## `wrapInPanel` option
 
