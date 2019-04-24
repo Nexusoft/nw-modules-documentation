@@ -12,7 +12,7 @@ Since the module code is isolated inside a `webview`, it needs some ways to comm
 
 Just like a regular web page, `webview` needs a HTML file as the entry to start loading all your module code. Javascript and CSS code can then be linked from the HTML entry file.
 
-By default, Nexus Wallet will look for a file named `index.html` in your module's root directory to load and use as the entry file. You can also set a custom path to your entry file by setting the `entry` field in your [`nxs_package.json`](../nxs_package.json.md) file.
+By default, Nexus Wallet will look for a file named `index.html` in your module's root directory to load and use as the entry file. You can also set a custom path to your entry file by setting the [`entry`](../nxs_package.json.md#entry) field in your [`nxs_package.json`](../nxs_package.json.md) file.
 
 ## `wrapInPanel` option
 
