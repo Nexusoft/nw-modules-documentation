@@ -16,7 +16,7 @@ By default, module's `webview` will take up the whole area between the header an
 
 However, in case that you don't have those needs and just want to simplify your code, or you don't use React on your module (`Panel` is a React component), yet you still want your module UI to be wrapped in a `Panel`, in your [`nxs_package.json`](../nxs_package.json.md) you can add:
 
-```json
+```js
 {
   // ...
   "options": {
@@ -28,4 +28,4 @@ However, in case that you don't have those needs and just want to simplify your 
 
 With that `wrapInPanel` option set as `true`, your module's `webview` will be wrapped inside a `Panel`'s body (see image below). The `Panel`'s title will be automatically set as your module's `displayName` preceeded by your module's icon.
 
-![webview's area with wrapInPanel option](./webview-wrapInPanel).JPG)
+![webview's area with wrapInPanel option](./webview-wrapInPanel.JPG)
