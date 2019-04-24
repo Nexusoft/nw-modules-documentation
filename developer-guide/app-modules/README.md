@@ -14,7 +14,7 @@ By default, module's `webview` will take up the whole area between the header an
 
 ![webview's area by default](./webview.JPG)
 
-However, in case that you don't have those needs and just want to simplify your code, or you don't use React on your module (`Panel` is a React component), yet you still want your module UI to be wrapped in a `Panel`, in your [`nxs_package.json`](../nxs_package.json.md) you can add:
+However, in case that you don't have those needs and just want to simplify your code, or you don't use React on your module (`Panel` is a React component), yet you still want your module UI to be wrapped in a `Panel`, in your [`nxs_package.json`](../nxs_package.json.md) file, you can set:
 
 ```js
 {

@@ -14,8 +14,8 @@
       url: /developer-guide/nxs_package.json.html
     - title: repo_info.json
       url: /developer-guide/repo_info.json.html
-    - title: Icons
-      url: /developer-guide/icons.html
+    - title: Module icon
+      url: /developer-guide/icon.html
     - title: app module type
       url: /developer-guide/app-modules/
       sublinks:
