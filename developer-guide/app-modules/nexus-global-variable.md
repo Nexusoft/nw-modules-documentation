@@ -60,6 +60,10 @@ const {
 
 ## `components`
 
+`components` provides reusable React components that are used in the base wallet. Using these React components can help you shorten your development time by not having to reinvent the wheel, and make your module UI look and feel more in sync with the base wallet UI.
+
+Please note that these components are built on React, so your module also need to be built on React in order to use them. These components are also styled using Emotion, so although you can use them without using Emotion, it would be easiest to customize them using Emotion.
+
 ```js
 const {
   components: {
@@ -78,7 +82,7 @@ const {
 } = NEXUS
 ```
 
-[docs TBD]
+See [React components](./react-components.md) for more details.
 
 
 ## `utilities`
