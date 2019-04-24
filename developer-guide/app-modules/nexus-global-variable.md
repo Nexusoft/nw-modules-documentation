@@ -20,7 +20,7 @@ const { specVersion } = NEXUS
 
 ## `libraries`
 
-`libraries` object contains the most commonly used third-party js libraries that's also used in the base wallet. If you use one or more of these libraries, you can grab them from `NEXUS.libraries` without having to add them as a dependency of your module, reducing your module's distributed package size.
+`libraries` object provides the most commonly used third-party js libraries that's also used in the base wallet. If you use one or more of these libraries, you can grab them from `NEXUS.libraries` without having to add them as a dependency of your module, reducing your module's distributed package size.
 
 ```js
 const {
@@ -41,9 +41,49 @@ const {
 } = NEXUS
 ```
 
+## `ipc`
+
+`ipc` object provides the methods that helps your module communicate with the base wallet, that means sending and receiving IPC messages to/from the base wallet.
+
+```js
+const {
+  ipc: {
+    send,
+    listen,
+    listenOnce,
+    stopListening,
+  },
+} = NEXUS
+```
+
+[docs TBD]
+
+## `components`
+
+```js
+const {
+  components: {
+    GlobalStyles,
+    Panel,
+    Button,
+    Tooltip,
+    TextField,
+    Switch,
+    Select,
+    Link,
+    Icon,
+    Tab,
+    FieldSet,
+  }
+} = NEXUS
+```
+
+[docs TBD]
+
+
 ## `utilities`
 
-`utilities` provides you with the utility functions that might be useful for your module code.
+`utilities` object provides some utility functions that might be useful for your module code.
 
 ```js
 const {
@@ -55,4 +95,3 @@ const {
 ```
 
 [docs TBD]
-
