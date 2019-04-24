@@ -4,9 +4,9 @@
 
 ## `<webview>` tag
 
-On the technical side, when an `app` module is open, the module UI and code is executed inside a [`<webview>` tag](https://electronjs.org/docs/api/webview-tag). `webview` ensures that the module code execution environment is isolated from the base wallet for better security.
+Technically, when an `app` module is opened, all the module code and UI will be embedded in a [`<webview>` tag](https://electronjs.org/docs/api/webview-tag). `webview` ensures that the module code execution environment is isolated from the base wallet for better security.
 
-Since the module code is isolated inside a `webview`, it needs some ways to communicate with the base wallet to do useful things, such as to receive wallet data, do RPC calls, or get the common styles and current theme from the base wallet so that the module UI blends well into the wallet UI around. [`NEXUS` global variable](./nexus-globalvariable.md) exists for that reason. It is the bridge between your module and the base wallet, provides you all the necessary libraries, utilities, common components, and methods for interacting with the base wallet. See [`NEXUS` global variable](./nexus-globalvariable.md) for more details.
+Since the module code is isolated inside a `webview`, it needs some ways to communicate with the base wallet to do useful things, such as to receive wallet data, do RPC calls, or get the common styles and current theme from the base wallet so that the module UI blends well into the wallet UI around. [`NEXUS` global variable](./nexus-globalvariable.md) exists for that reason. It is the bridge between your module and the base wallet, provides you with all the necessary libraries, utilities, common components, and methods for interacting with the base wallet. See [`NEXUS` global variable](./nexus-globalvariable.md) for more details.
 
 ## `wrapInPanel` option
 
@@ -16,7 +16,7 @@ By default, module's `webview` will take up the whole area between the header an
 
 However, in case that you don't have those needs and just want to simplify your code, or you don't use React on your module (`Panel` is a React component), yet you still want your module UI to be wrapped in a `Panel`, in your [`nxs_package.json`](../nxs_package.json.md) you can add:
 
-```
+```js
 {
   // ...
   "options": {
