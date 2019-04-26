@@ -22,5 +22,5 @@
         
       - title: NEXUS global variable
         url: /developer-guide/app-modules/nexus-global-variable.html
-      - title: IPC messages
+      - title: IPC messages API
         url: /developer-guide/app-modules/ipc-messages.html

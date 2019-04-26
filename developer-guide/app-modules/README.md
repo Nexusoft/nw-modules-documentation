@@ -32,6 +32,6 @@ However, in case that you don't have those needs and just want to simplify your 
 }
 ```
 
-With that `wrapInPanel` option set as `true`, your module's `webview` will be wrapped inside a `Panel`'s body (see image below). The `Panel`'s title will be automatically set as your module's `displayName` preceeded by your module's icon.
+With the `wrapInPanel` option set as `true`, your module's `webview` will be wrapped inside a `Panel`'s body (see image below). The `Panel`'s title will be automatically set as your module's `displayName` preceeded by your module's icon.
 
 ![webview's area with wrapInPanel option](./webview-wrapInPanel.JPG)

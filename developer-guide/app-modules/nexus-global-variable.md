@@ -56,7 +56,7 @@ const {
 } = NEXUS
 ```
 
-[docs TBD]
+See [IPC messages API](./ipc-messages.md) for more details
 
 ## `components`
 
@@ -84,7 +84,6 @@ const {
 
 See [React components](./react-components.md) for more details.
 
-
 ## `utilities`
 
 `utilities` object provides some utility functions that might be useful for your module code.
@@ -97,5 +96,3 @@ const {
   }
 } = NEXUS
 ```
-
-[docs TBD]
