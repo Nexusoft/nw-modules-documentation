@@ -8,16 +8,17 @@ Since your module runs on a different process than the base wallet, in order to 
 Table of contents
 
 - [Methods](#methods)
-  - `send(channel, ...args)`
-  - `listen(channel, listener)`
-  - `listenOnce(channel, listener)`
+  - [`send(channel, ...args)`](#sendchannel-args)
+  - [`listen(channel, listener)`](#listenchannel-listener)
+  - [`listenOnce(channel, listener)`](#listenoncechannel-listener)
 - [Outgoing channels (from modules)](#outgoing-channels-from-modules)
-  
+  - [`rpc-call` channel](#rpc-call-channel)
 - [Incoming channels (to modules)](#incoming-channels-to-modules)
-  - `initialize` channel
-  - `theme-updated` channel
-  - `settings-updated` channel
-  - `core-info-updated` channel
+  - [`initialize` channel](#initialize-channel)
+  - [`theme-updated` channel](#theme-updated-channel)
+  - [`settings-updated` channel](#settings-updated-channel)
+  - [`core-info-updated` channel](#core-info-updated-channel)
+  - [`rpc-return[:id]` channel](#rpc-returnid-channel)
 
 ## Methods
 
@@ -58,7 +59,7 @@ Available options:
 
 - `command`: string - A valid command that will be sent to Nexus core (see Nexus core documentation for list of all available commands).
 - `params`: array - List of all params that will be passed along with the command.
-- `callId`: number|string (optional) - An optional identifier for identifying the call. If `callId` is not provided, the call result will be sent back via `rpc-return` channel. If a non-falsy `callId` value is provided, the call result will be sent back via `rpc-return:<id>` channel.
+- `callId`: number|string (optional) - An optional identifier for identifying the call. If `callId` is not provided, the call result will be sent back via [`rpc-return` channel](#rpc-returnid-channel). If a non-falsy `callId` value is provided, the call result will be sent back via `rpc-return:<id>` channel.
 
 Example usage:
 
@@ -93,20 +94,20 @@ NEXUS.ipc.listenOnce('initialize', initialData => {
 
 - `theme` 
 
-The current theme object that the base wallet is using. It is best used in combination with `NEXUS.utilities.color.getMixer` and pass to [Emotion](https://emotion.sh)'s `ThemeProvider`:
+  The current theme object that the base wallet is using. It is best used in combination with `NEXUS.utilities.color.getMixer` and pass to [Emotion](https://emotion.sh)'s `ThemeProvider`:
 
-```js
-// Add the mixer function
-const themeWithMixer = {
-  ...theme,
-  mixer: color.getMixer(theme.background, theme.foreground),
-};
+  ```js
+  // Add the mixer function
+  const themeWithMixer = {
+    ...theme,
+    mixer: color.getMixer(theme.background, theme.foreground),
+  };
 
-// Then render this...
-<ThemeProvider theme={themeWithMixer}>
-  {/* Your module... */}
-</ThemeProvider>
-```
+  // Then render this...
+  <ThemeProvider theme={themeWithMixer}>
+    {/* Your module... */}
+  </ThemeProvider>
+  ```
 
 Check out usage example in [react-redux_module_example](https://github.com/Nexusoft/react_redux_module_example).
 
@@ -114,14 +115,14 @@ Check out usage example in [react-redux_module_example](https://github.com/Nexus
 
   The current user settings that the base wallet is using. It's not the full settings but only a few settings that modules might care about.
 
-```js
-// Fields in `settings`
-{
-  locale,       // string, e.g. 'en'
-  fiatCurrency, // string, e.g. 'USD'
-  addressStyle, // string enum: ['segmented', 'truncateMiddle', 'raw']
-}
-```
+  ```js
+  // Fields in `settings`
+  {
+    locale,       // string, e.g. 'en'
+    fiatCurrency, // string, e.g. 'USD'
+    addressStyle, // string enum: ['segmented', 'truncateMiddle', 'raw']
+  }
+  ```
 
 - `coreInfo`
 
@@ -170,3 +171,29 @@ NEXUS.ipc.listen('core-info-updated', coreInfo => {
 ```
 
 `core-info-updated` message is sent everytime the core info is updated in the base wallet.
+
+### `rpc-return[:id]` channel
+
+`rpc-return` message is sent back to your module as the result of a previous [`rpc-call`](#rpc-call-channel) message that your module has sent to the base wallet.
+
+If the previous `rpc-call` did not include a valid `callId` option, the result channel will be just `rpc-return`.
+
+If the previous `rpc-call` did include a valid `callId` option, the result channel will be just `rpc-return:<id>`. For example if you call `send('rpc-call', { callId: 10, ... }`, you should then call `listenOnce('rpc-return:10', (err, result) => { ... })`.
+
+Example usage:
+
+```js
+const callId = generateUniqueId()
+NEXUS.ipc.listenOnce(`rpc-return:${callId}`, (err, result) => {
+  if (err) {
+    // handle error...
+  } else {
+    // handle result
+  }
+})
+NEXUS.ipc.send('rpc-call', {
+  callId,
+  // other options...
+})
+```
+
