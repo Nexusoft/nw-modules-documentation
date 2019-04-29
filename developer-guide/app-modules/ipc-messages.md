@@ -2,7 +2,7 @@
 
 Since your module runs on a different process than the base wallet, in order to communicate with each other, your module and the base wallet need to send and receive **IPC (inter-process communication) messages**. Methods for sending and receiving IPC messages can be found in `NEXUS.ipc` object of the [`NEXUS` global variable](./nexus-globalvariable.md) (for example you can call `NEXUS.ipc.send(...)`). A few notes about IPC messages usage:
 
-- IPC messages are asynchronous.
+- IPC messages are executed asynchronously.
 - All the arguments you pass in will be serialized in JSON, so functions or any other non-serializable data won't work.
 
 ## Methods
@@ -32,12 +32,12 @@ Accepted arguments for the `listener` function depends on the `channel` you're l
 
 ## Incoming channels (to modules)
 
-### `initialize`
+### `initialize` channel
 
 Usage:
 
 ```js
-listenOnce('initialize', initialData => {
+NEXUS.ipc.listenOnce('initialize', initialData => {
   const {
     theme,
     settings,
@@ -45,13 +45,13 @@ listenOnce('initialize', initialData => {
     moduleState,
     storageData
   } = initialData
-  // do cool things...
+  // populate initial data in module...
 })
 ```
 
-`initialize` message will be sent only once when the `webview`'s DOM is ready. `initialize` message provides modules with necessary initial data, including:
+`initialize` message is sent only once when the `webview`'s DOM is ready. `initialize` message provides modules with necessary initial data, including:
 
-#### `theme` 
+- `theme` 
 
 The current theme object that the base wallet is using. It is best used in combination with `NEXUS.utilities.color.getMixer` and pass to [Emotion](https://emotion.sh)'s `ThemeProvider`:
 
@@ -70,7 +70,7 @@ const themeWithMixer = {
 
 Check out usage example in [react-redux_module_example](https://github.com/Nexusoft/react_redux_module_example).
 
-#### `settings`
+- `settings`
 
 The current user settings that the base wallet is using. It's not the full settings but only a few settings that modules might care about.
 
@@ -83,14 +83,50 @@ The current user settings that the base wallet is using. It's not the full setti
 }
 ```
 
-#### `coreInfo`
+- `coreInfo`
 
 Information that the core returned from `getinfo` RPC calls. What's contained inside `coreInfo` depends on the core that the Nexus Wallet is using.
 
-#### `moduleState`
+- `moduleState`
 
 The last state object that your module has previously stored via the `update-state` IPC message.
 
-#### `storageData`
+- `storageData`
 
 The last data object that your module has previously stored via the `update-storage` IPC message.
+
+### `theme-updated` channel
+
+Usage:
+
+```js
+NEXUS.ipc.listen('theme-updated', theme => {
+  // update theme in module...
+})
+```
+
+`theme-updated` message is sent everytime the wallet theme is changed in the base wallet.
+
+### `settings-updated` channel
+
+Usage:
+
+```js
+NEXUS.ipc.listen('settings-updated', settings => {
+  // update settings in module...
+})
+```
+
+`settings-updated` message is sent everytime the settings is changed in the base wallet.
+
+### `core-info-updated` channel
+
+Usage:
+
+```js
+NEXUS.ipc.listen('core-info-updated', coreInfo => {
+  // update core info in module...
+})
+```
+
+`core-info-updated` message is sent everytime the core info is updated in the base wallet.

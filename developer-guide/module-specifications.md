@@ -1,6 +1,6 @@
 # Nexus Module Specifications
 
-**Nexus Wallet Module Specifications** (or just **Module Specifications** for short) refers to the collection of all the interaction rules and APIs between the base Nexus Wallet and Nexus Wallet Modules. Some examples Components of Module Specifications include:
+**Nexus Wallet Module Specifications** (or just **Module Specifications** for short) refers to the collection of all the interaction rules and APIs between the base Nexus Wallet and Nexus Wallet Modules. Some examples components of Module Specifications include:
 
 - File schemas - including schemas for [nxs_package.json](./nxs_package.json.md) and [repo_info.json](./repo_info.json.md).
 - [NEXUS global variable](./app-modules/nexus-global-variable.md).
