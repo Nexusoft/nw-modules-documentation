@@ -12,6 +12,8 @@ Since your module runs on a different process than the base wallet, in order to 
   - [`listen(channel, listener)`](#listenchannel-listener)
   - [`listenOnce(channel, listener)`](#listenoncechannel-listener)
 - [Outgoing channels (from modules)](#outgoing-channels-from-modules)
+  - [`show-notification` channel](#show-notification-channel)
+  - [`show-error-dialog` channel](#show-error-dialog-channel)
   - [`rpc-call` channel](#rpc-call-channel)
 - [Incoming channels (to modules)](#incoming-channels-to-modules)
   - [`initialize` channel](#initialize-channel)
@@ -56,15 +58,27 @@ Accepted arguments for the `listener` function depends on the `channel` you're l
 Displays a notification at the top left corner of the wallet.
 
 ```js
-send(`show-notification`, content: string, options: object)
+send(`show-notification`, options: object)
 ```
-
-`content` is the text that you want to display as the notification.
 
 Available options:
 
+- `content`: string - The content that you want to display in the notification.
 - `type`: string (optional) - Type of notification that you want to display. Available types are: `info` (default), `success`, `error`.
 - `autoClose`: number (optional) - Number of miliseconds after which you want the notification to automatically close. If a falsy value is passed (except `undefined`), the notification can only be closed manually. Default value is `3000`.
+
+### `show-error-dialog` channel
+
+Displays an error dialog in the wallet.
+
+```js
+send(`show-error-dialog`, options: object)
+```
+
+Available options:
+
+- `message`: string - The main (larger) text shown in the error dialog.
+- `note`: string (optional) - The supporting (smaller) text shown in the error dialog below the `message`.
 
 ### `rpc-call` channel
 
@@ -130,7 +144,7 @@ NEXUS.ipc.listenOnce('initialize', initialData => {
   </ThemeProvider>
   ```
 
-Check out usage example in [react-redux_module_example](https://github.com/Nexusoft/react_redux_module_example).
+  Check out usage example in [react-redux_module_example](https://github.com/Nexusoft/react_redux_module_example).
 
 - `settings`
 
@@ -195,7 +209,7 @@ NEXUS.ipc.listen('core-info-updated', coreInfo => {
 
 ### `rpc-return[:id]` channel
 
-`rpc-return` message is sent back to your module as the result of a previous [`rpc-call`](#rpc-call-channel) message that your module has sent to the base wallet.
+`rpc-return` message is sent to your module as the result of a previous [`rpc-call`](#rpc-call-channel) message that your module has sent to the base wallet.
 
 If the previous `rpc-call` did not include a valid `callId` option, the result channel will be just `rpc-return`.
 
