@@ -1,9 +1,23 @@
 # IPC messages API
 
-Since your module runs on a different process than the base wallet, in order to communicate with each other, your module and the base wallet need to send and receive **IPC (inter-process communication) messages**. Methods for sending and receiving IPC messages can be found in `NEXUS.ipc` object of the [`NEXUS` global variable](./nexus-globalvariable.md) (for example you can call `NEXUS.ipc.send(...)`). A few notes about IPC messages usage:
+Since your module runs on a different process than the base wallet, in order to communicate with each other, your module and the base wallet need to send and receive **IPC (inter-process communication) messages**. Methods for sending and receiving IPC messages can be found in `NEXUS.ipc` object of the [`NEXUS` global variable](./nexus-globalvariable.md) (for example you can call `NEXUS.ipc.send(...)`). A few notes about IPC messages Example usage:
 
-- IPC messages are executed asynchronously.
+- IPC messages are executed asynchronously, therefore the call results (if any) will not be returned directly from the function calls.
 - All the arguments you pass in will be serialized in JSON, so functions or any other non-serializable data won't work.
+
+Table of contents
+
+- [Methods](#methods)
+  - `send(channel, ...args)`
+  - `listen(channel, listener)`
+  - `listenOnce(channel, listener)`
+- [Outgoing channels (from modules)](#outgoing-channels-from-modules)
+  
+- [Incoming channels (to modules)](#incoming-channels-to-modules)
+  - `initialize` channel
+  - `theme-updated` channel
+  - `settings-updated` channel
+  - `core-info-updated` channel
 
 ## Methods
 
@@ -30,11 +44,37 @@ Accepted arguments for the `listener` function depends on the `channel` you're l
 Listen to an IPC message sent from the base wallet via the specified `channel` just once, then the listener will be automatically removed.
 Accepted arguments for the `listener` function depends on the `channel` you're listening to.
 
+## Outgoing channels (from modules)
+
+### `rpc-call` channel
+
+Sends an [RPC call](https://en.wikipedia.org/wiki/Remote_procedure_call) to the core. The call result (or error) will be sent back to module via `rpc-return` channel.
+
+```js
+send(`rpc-call`, options: object)
+```
+
+Available options:
+
+- `command`: string - A valid command that will be sent to Nexus core (see Nexus core documentation for list of all available commands).
+- `params`: array - List of all params that will be passed along with the command.
+- `callId`: number|string (optional) - An optional identifier for identifying the call. If `callId` is not provided, the call result will be sent back via `rpc-return` channel. If a non-falsy `callId` value is provided, the call result will be sent back via `rpc-return:<id>` channel.
+
+Example usage:
+
+```js
+NEXUS.ipc.send(`rpc-call`, {
+  command: 'getaccountaddress',
+  params: ['default'],
+  callId: 1
+})
+```
+
 ## Incoming channels (to modules)
 
 ### `initialize` channel
 
-Usage:
+Example usage:
 
 ```js
 NEXUS.ipc.listenOnce('initialize', initialData => {
@@ -64,7 +104,7 @@ const themeWithMixer = {
 
 // Then render this...
 <ThemeProvider theme={themeWithMixer}>
-  ...
+  {/* Your module... */}
 </ThemeProvider>
 ```
 
@@ -72,7 +112,7 @@ Check out usage example in [react-redux_module_example](https://github.com/Nexus
 
 - `settings`
 
-The current user settings that the base wallet is using. It's not the full settings but only a few settings that modules might care about.
+  The current user settings that the base wallet is using. It's not the full settings but only a few settings that modules might care about.
 
 ```js
 // Fields in `settings`
@@ -85,19 +125,19 @@ The current user settings that the base wallet is using. It's not the full setti
 
 - `coreInfo`
 
-Information that the core returned from `getinfo` RPC calls. What's contained inside `coreInfo` depends on the core that the Nexus Wallet is using.
+  Information that the core returned from `getinfo` RPC calls. What's contained inside `coreInfo` depends on the core that the Nexus Wallet is using.
 
 - `moduleState`
 
-The last state object that your module has previously stored via the `update-state` IPC message.
+  The last state object that your module has previously stored via the `update-state` IPC message.
 
 - `storageData`
 
-The last data object that your module has previously stored via the `update-storage` IPC message.
+  The last data object that your module has previously stored via the `update-storage` IPC message.
 
 ### `theme-updated` channel
 
-Usage:
+Example usage:
 
 ```js
 NEXUS.ipc.listen('theme-updated', theme => {
@@ -109,7 +149,7 @@ NEXUS.ipc.listen('theme-updated', theme => {
 
 ### `settings-updated` channel
 
-Usage:
+Example usage:
 
 ```js
 NEXUS.ipc.listen('settings-updated', settings => {
@@ -121,7 +161,7 @@ NEXUS.ipc.listen('settings-updated', settings => {
 
 ### `core-info-updated` channel
 
-Usage:
+Example usage:
 
 ```js
 NEXUS.ipc.listen('core-info-updated', coreInfo => {
