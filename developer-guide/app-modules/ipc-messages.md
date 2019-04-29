@@ -5,7 +5,7 @@ Since your module runs on a different process than the base wallet, in order to 
 - IPC messages are executed asynchronously, therefore the call results (if any) will not be returned directly from the function calls.
 - All the arguments you pass in will be serialized in JSON, so functions or any other non-serializable data won't work.
 
-Table of contents
+### Table of contents
 
 - [Methods](#methods)
   - [`send(channel, ...args)`](#sendchannel-args)
@@ -19,6 +19,8 @@ Table of contents
   - [`settings-updated` channel](#settings-updated-channel)
   - [`core-info-updated` channel](#core-info-updated-channel)
   - [`rpc-return[:id]` channel](#rpc-returnid-channel)
+
+---
 
 ## Methods
 
@@ -45,7 +47,24 @@ Accepted arguments for the `listener` function depends on the `channel` you're l
 Listen to an IPC message sent from the base wallet via the specified `channel` just once, then the listener will be automatically removed.
 Accepted arguments for the `listener` function depends on the `channel` you're listening to.
 
+---
+
 ## Outgoing channels (from modules)
+
+### `show-notification` channel
+
+Displays a notification at the top left corner of the wallet.
+
+```js
+send(`show-notification`, content: string, options: object)
+```
+
+`content` is the text that you want to display as the notification.
+
+Available options:
+
+- `type`: string (optional) - Type of notification that you want to display. Available types are: `info` (default), `success`, `error`.
+- `autoClose`: number (optional) - Number of miliseconds after which you want the notification to automatically close. If a falsy value is passed (except `undefined`), the notification can only be closed manually. Default value is `3000`.
 
 ### `rpc-call` channel
 
@@ -59,7 +78,7 @@ Available options:
 
 - `command`: string - A valid command that will be sent to Nexus core (see Nexus core documentation for list of all available commands).
 - `params`: array - List of all params that will be passed along with the command.
-- `callId`: number|string (optional) - An optional identifier for identifying the call. If `callId` is not provided, the call result will be sent back via [`rpc-return` channel](#rpc-returnid-channel). If a non-falsy `callId` value is provided, the call result will be sent back via `rpc-return:<id>` channel.
+- `callId`: number\|string (optional) - An optional identifier for identifying the call. If `callId` is not provided, the call result will be sent back via [`rpc-return` channel](#rpc-returnid-channel). If a non-falsy `callId` value is provided, the call result will be sent back via `rpc-return:<id>` channel.
 
 Example usage:
 
@@ -70,6 +89,8 @@ NEXUS.ipc.send(`rpc-call`, {
   callId: 1
 })
 ```
+
+---
 
 ## Incoming channels (to modules)
 
