@@ -14,24 +14,28 @@ Since your module runs on a different process than the base wallet, in order to 
 - [Outgoing channels (from modules)](#outgoing-channels-from-modules)
   - [`show-notification` channel](#show-notification-channel)
   - [`show-error-dialog` channel](#show-error-dialog-channel)
+  - [`show-success-dialog` channel](#show-success-dialog-channel)
   - [`rpc-call` channel](#rpc-call-channel)
+  - [`confirm` channel](#confirm-channel)
 - [Incoming channels (to modules)](#incoming-channels-to-modules)
   - [`initialize` channel](#initialize-channel)
   - [`theme-updated` channel](#theme-updated-channel)
   - [`settings-updated` channel](#settings-updated-channel)
   - [`core-info-updated` channel](#core-info-updated-channel)
   - [`rpc-return[:id]` channel](#rpc-returnid-channel)
+  - [`confirm-answer[:id]` channel](#confirm-answerid-channel)
 
 ---
 
 ## Methods
 
-### `send(channel, ...args)`
+### `send(channel, ...arguments)`
 
 - `channel`: string
-- `args`: any[]
+- `arguments`: any[]
 
 Send an IPC message from module to the base wallet via the specified `channel`.
+Specific types and number of `arguments` depends on the `channel` you're sending to.
 
 ### `listen(channel, listener)`
 
@@ -80,9 +84,24 @@ Available options:
 - `message`: string - The main (larger) text shown in the error dialog.
 - `note`: string (optional) - The supporting (smaller) text shown in the error dialog below the `message`.
 
+### `show-success-dialog` channel
+
+Displays an success dialog in the wallet.
+
+```js
+send(`show-success-dialog`, options: object)
+```
+
+Available options:
+
+- `message`: string - The main (larger) text shown in the success dialog.
+- `note`: string (optional) - The supporting (smaller) text shown in the success dialog below the `message`.
+
 ### `rpc-call` channel
 
-Sends an [RPC call](https://en.wikipedia.org/wiki/Remote_procedure_call) to the core. The call result (or error) will be sent back to module via `rpc-return` channel.
+Sends an [RPC call](https://en.wikipedia.org/wiki/Remote_procedure_call) to the core. 
+
+The call result (or error) will be sent back to module via [`rpc-return[:id]` channel](#rpc-returnid-channel).
 
 ```js
 send(`rpc-call`, options: object)
@@ -92,7 +111,37 @@ Available options:
 
 - `command`: string - A valid command that will be sent to Nexus core (see Nexus core documentation for list of all available commands).
 - `params`: array - List of all params that will be passed along with the command.
-- `callId`: number\|string (optional) - An optional identifier for identifying the call. If `callId` is not provided, the call result will be sent back via [`rpc-return` channel](#rpc-returnid-channel). If a non-falsy `callId` value is provided, the call result will be sent back via `rpc-return:<id>` channel.
+- `callId`: number\|string (optional) - An optional identifier for identifying the call. If `callId` is not provided, the call result will be sent back via `rpc-return` channel. If a non-falsy `callId` value is provided, the call result will be sent back via `rpc-return:<callId>` channel.
+
+Example usage:
+
+```js
+NEXUS.ipc.send(`rpc-call`, {
+  command: 'getaccountaddress',
+  params: ['default'],
+  callId: 1
+})
+```
+
+### `confirm` channel
+
+Displays a confirmation dialog to the user. The confirmation dialog contains a question and two buttons for "Yes" and "No" answers.
+
+The answer user chooses (either `true` or `false`) will be sent back to module via [`confirm-answer[:id]` channel](#confirm-answerid-channel).
+
+```js
+send(`confirm`, options: object)
+```
+
+Available options:
+
+- `question`: string - The question (on larger text) to display on the confirmation dialog.
+- `note`: string (optional) - The added information (on smaller text) to display on the confirmation dialog under the question.
+- `labelYes`: string (default: `'Yes'`) - The custom label for the "Yes" button, which will send back the result `true` when chosen by user.
+- `skinYes`: string (default: `'primary'`) - The button skin for the "Yes" button. List of available values for button skin can be found here (coming soon).
+- `labelNo`: string (default: `'No'`) - The custom label for the "No" button, which will send back the result `false` when chosen by user.
+- `skinNo`: string (default: `'default'`) - The button skin for the "No" button. List of available values for button skin can be found here (coming soon).
+- `confirmationId`: number\|string (optional) - An optional identifier for identifying the confirmation. If `confirmationId` is not provided, the answer will be sent back via `confirm-answer` channel. If a non-falsy `confirmationId` value is provided, the answer will be sent back via `confirm-answer:<confirmationId>` channel.
 
 Example usage:
 
@@ -211,9 +260,9 @@ NEXUS.ipc.listen('core-info-updated', coreInfo => {
 
 `rpc-return` message is sent to your module as the result of a previous [`rpc-call`](#rpc-call-channel) message that your module has sent to the base wallet.
 
-If the previous `rpc-call` did not include a valid `callId` option, the result channel will be just `rpc-return`.
+If the previous `rpc-call` IPC message did not include a valid `callId` option, the result channel would be just `rpc-return`.
 
-If the previous `rpc-call` did include a valid `callId` option, the result channel will be just `rpc-return:<id>`. For example if you call `send('rpc-call', { callId: 10, ... }`, you should then call `listenOnce('rpc-return:10', (err, result) => { ... })`.
+If the previous `rpc-call` IPC message did include a valid `callId` option, the result channel would be `rpc-return:<id>`. For example if you call `send('rpc-call', { callId: 10, ... }`, you should then call `listenOnce('rpc-return:10', (err, result) => { ... })`.
 
 Example usage:
 
@@ -223,11 +272,36 @@ NEXUS.ipc.listenOnce(`rpc-return:${callId}`, (err, result) => {
   if (err) {
     // handle error...
   } else {
-    // handle result
+    // handle result...
   }
 })
 NEXUS.ipc.send('rpc-call', {
   callId,
+  // other options...
+})
+```
+
+### `confirm-answer[:id]` channel
+
+`confirm-answer` message is sent to your module as the result of a previous [`confirm`](#confirm-channel) message that your module has sent to the base wallet.
+
+If the previous `confirm` IPC message did not include a valid `confirmationId` option, the result channel would be just `confirm-answer`.
+
+If the previous `confirm` IPC message did include a valid `confirmationId` option, the result channel would be `confirm-answer:<id>`. For example if you call `send('confirm', { confirmationId: 14, ... }`, you should then call `listenOnce('confirm-answer:14', (err, result) => { ... })`.
+
+Example usage:
+
+```js
+const confirmationId = generateUniqueId()
+NEXUS.ipc.listenOnce(`confirm-answer:${confirmationId}`, agreed => {
+  if (agreed) {
+    // proceed...
+  } else {
+    // cancel the action...
+  }
+})
+NEXUS.ipc.send('confirm', {
+  confirmationId,
   // other options...
 })
 ```
