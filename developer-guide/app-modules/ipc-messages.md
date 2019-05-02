@@ -18,6 +18,7 @@ Since your module runs on a different process than the base wallet, in order to 
   - [`rpc-call` channel](#rpc-call-channel)
   - [`confirm` channel](#confirm-channel)
   - [`update-state` channel](#update-state-channel)
+  - [`update-storage` channel](#update-storage-channel)
 - [Incoming channels (to modules)](#incoming-channels-to-modules)
   - [`initialize` channel](#initialize-channel)
   - [`theme-updated` channel](#theme-updated-channel)
@@ -144,23 +145,13 @@ Available options:
 - `skinNo`: string (default: `'default'`) - The button skin for the "No" button. List of available values for button skin can be found here (coming soon).
 - `confirmationId`: number\|string (optional) - An optional identifier for identifying the confirmation. If `confirmationId` is not provided, the answer will be sent back via `confirm-answer` channel. If a non-falsy `confirmationId` value is provided, the answer will be sent back via `confirm-answer:<confirmationId>` channel.
 
-Example usage:
-
-```js
-NEXUS.ipc.send(`rpc-call`, {
-  command: 'getaccountaddress',
-  params: ['default'],
-  callId: 1
-})
-```
-
 ### `update-state` channel
 
 Saves an arbitrary data object (usually your module's state data) into the base wallet's memory so that it won't be lost when user navigates away from your module.
 
 Because all your module's code is embedded inside a [`<webview>` tag](./README.md#webview-tag), normally when user navigates away from your module page, the `<webview>` tag will be unmounted and all your module state will be lost. The next time user navigates back to your module, user will have to do everything from the beginning. Therefore you might want to save your module's state into the base wallet by interval or everytime when it's changed.
 
-With the `update-state` IPC message, the next time user navigates back to your module, the **last** data object that you've sent along with the `update-state` message will be passed back to you module in the `moduleState` object via the [`initialize` channel](#initialize-channel).
+With the `update-state` IPC message, the next time user navigates back to your module, the **last** data object that you've sent along with the `update-state` message will be passed back to your module in the `moduleState` object via the [`initialize` channel](#initialize-channel).
 
 ```js
 send(`update-state`, state: object)
@@ -168,7 +159,23 @@ send(`update-state`, state: object)
 
 `state` is any data object that you want to save.
 
-Note: This data will not be persisted when the wallet is closed. In order to persist data even when the wallet is closed, use `update-storage` channel.
+Note: This data will not be persisted when the wallet is closed. In order to persist data even when the wallet is closed, use [`update-storage` channel](#update-storage-channel) instead.
+
+### `update-storage` channel
+
+Saves an arbitrary data object (usually your module's settings) into a file so that it won't be lost when the wallet is closed.
+
+Data will be saved into a file named `storage.json` inside your module's directory, therefore each module has its own storage, not shared with any other. Data stored in `storage.json` cannot exceed 1MB.
+
+The **last** data object that you've sent along with the `update-storage` message will be passed back to your module in the `storageData` object via the [`initialize` channel](#initialize-channel) the next time user navigates to your module.
+
+```js
+send(`update-storage`, data: object)
+```
+
+`data` is any data object that you want to save.
+
+Note: This will write data into a file on user's hard drive, so avoid calling this with high frequency activities such as on user's key stroke. For those kinds of data that doesn't need to be persisted when the wallet is closed (textbox content for example), use [`update-state` channel](#update-state-channel) instead.
 
 ---
 
@@ -235,7 +242,7 @@ NEXUS.ipc.listenOnce('initialize', initialData => {
 
 - `storageData`
 
-  The last data object that your module has previously stored via the `update-storage` IPC message.
+  The last data object that your module has previously stored via the [`update-storage` channel](#update-storage-channel).
 
 ### `theme-updated` channel
 
