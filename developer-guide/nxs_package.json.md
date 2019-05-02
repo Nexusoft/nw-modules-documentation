@@ -1,10 +1,10 @@
 # nxs_package.json
 
-`nxs_package.json` is a mandatory file that **all** Nexus modules **must** contain, and must be located in the top-level directory of the module.
+`nxs_package.json` is a mandatory file that **all** Nexus Wallet Modules **must** contain, and must be located in the top-level directory of the module.
 
 `nxs_package.json` contains most meta-data about the module, and helps Nexus Wallet identify if a directory is a module or not.
 
-As the name suggests, `nxs_package.json` is inspired by [`npm`'s `package.json`](https://docs.npmjs.com/files/package.json) file, plays a pretty similar role in Nexus modules as `package.json` does in `npm` packages, and has many similar fields as in `package.json`.
+As the name suggests, `nxs_package.json` is inspired by [`npm`'s `package.json`](https://docs.npmjs.com/files/package.json) file, plays a pretty similar role in Nexus Wallet Modules as `package.json` does in `npm` packages, and has many similar fields as in `package.json`.
 
 ## Schema
 
@@ -14,7 +14,7 @@ As the name suggests, `nxs_package.json` is inspired by [`npm`'s `package.json`]
 - Type: `string`
 - Constraints: only accepts lowercase letters, digits, underscores (`_`) and dashes (`-`)
 
-This will be used as the unique identifier of your module. If more than one modules with the same `name` are installed in a wallet, only one of them will work. Currently there hasn't been a central "module store" that hosts all the Nexus modules available, avoiding naming collision must be taken care by the module developers yourself. So when you need to name your module, please be aware if there is already an existing module with the same name.
+This will be used as the unique identifier of your module. If more than one modules with the same `name` are installed in a wallet, only one of them will work. Currently there hasn't been a central "module store" that hosts all the Nexus Wallet Modules available, avoiding naming collision must be taken care by the module developers yourself. So when you need to name your module, please be aware if there is already an existing module with the same name.
 
 ### `displayName`
 
@@ -40,7 +40,7 @@ The version of your module.
 - Type: `string`
 - Constraints: must be a valid [semver](https://semver.org/) version
 
-The version of the [Nexus Module Specifications](./nexus-module-specifications) that this version of your module was built on.
+The version of the [Nexus Wallet Module Specifications](./nexus-module-specifications) that this version of your module was built on.
 
 If this `specVersion` is lower than the lowest Spec version that user's wallet supports, your module will be marked "invalid" and will not work.
 

@@ -1,4 +1,4 @@
-# Nexus Module Specifications
+# Nexus Wallet Module Specifications
 
 **Nexus Wallet Module Specifications** (or just **Module Specifications** for short) refers to the collection of all the interaction rules and APIs between the base Nexus Wallet and Nexus Wallet Modules. Some examples components of Module Specifications include:
 
@@ -14,6 +14,6 @@ In your module, you can get the current spec version of user's wallet from the `
 
 Any version of Nexus Wallet has:
 
-- A current version of Nexus Module Specifications which is the newest by the time this version of Nexus Wallet is released.
+- A current version of Nexus Wallet Module Specifications which is the newest by the time this version of Nexus Wallet is released.
 
-- A lowest supported version of Nexus Module Specifications, which is still compatible with the current wallet. Any modules that is built on a Spec version that is lower than this is marked invalid and cannot be installed.
+- A lowest supported version of Nexus Wallet Module Specifications, which is still compatible with the current wallet. Any modules that is built on a Spec version that is lower than this is marked invalid and cannot be installed.

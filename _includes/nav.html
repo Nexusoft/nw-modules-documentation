@@ -3,12 +3,18 @@
 {% include active-page.html %}
 
 <!-- Then we build the nav bar. -->
-<nav class="side-nav">
-  <h3>Table of contents</h3>
+<div class="side-bar">
+  <nav>
+    <h3>Table of contents</h3>
 
-  <ul>
-    {% for entry in site.data.navigation %}
-      {% include nav-item.html %}
-    {% endfor %}
-  </ul>
-</nav>
+    <ul>
+      {% for entry in site.data.navigation %}
+        {% include nav-item.html %}
+      {% endfor %}
+    </ul>
+  </nav>
+
+  <p>Current specification version: 0.1.0</p>
+
+  <p>Contributions are welcome. If you want to contribute to the documentation, fork the [repository]({{ repository.html_url }}) and create pull requests.</p>
+</div>

@@ -25,7 +25,7 @@ section {
   flex-shrink: 0;
 }
 
-.side-nav {
+.side-bar {
   display: block !important; /* override default hidden on mobile */
   width: 260px;
   flex-shrink: 0;
@@ -43,8 +43,12 @@ section {
     margin-bottom: 0;
   }
 
-  & > ul {
-    padding-left: 0;
+  & > nav {
+    margin-bottom: 20px;
+
+    & > ul {
+      padding-left: 0;
+    }
   }
   
   a {
