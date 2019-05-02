@@ -17,6 +17,7 @@ Since your module runs on a different process than the base wallet, in order to 
   - [`show-success-dialog` channel](#show-success-dialog-channel)
   - [`rpc-call` channel](#rpc-call-channel)
   - [`confirm` channel](#confirm-channel)
+  - [`update-state` channel](#update-state-channel)
 - [Incoming channels (to modules)](#incoming-channels-to-modules)
   - [`initialize` channel](#initialize-channel)
   - [`theme-updated` channel](#theme-updated-channel)
@@ -153,6 +154,22 @@ NEXUS.ipc.send(`rpc-call`, {
 })
 ```
 
+### `update-state` channel
+
+Saves an arbitrary data object (usually your module's state data) into the base wallet's memory so that it won't be lost when user navigates away from your module.
+
+Because all your module's code is embedded inside a [`<webview>` tag](./README.md#webview-tag), normally when user navigates away from your module page, the `<webview>` tag will be unmounted and all your module state will be lost. The next time user navigates back to your module, user will have to do everything from the beginning. Therefore you might want to save your module's state into the base wallet by interval or everytime when it's changed.
+
+With the `update-state` IPC message, the next time user navigates back to your module, the **last** data object that you've sent along with the `update-state` message will be passed back to you module in the `moduleState` object via the [`initialize` channel](#initialize-channel).
+
+```js
+send(`update-state`, state: object)
+```
+
+`state` is any data object that you want to save.
+
+Note: This data will not be persisted when the wallet is closed. In order to persist data even when the wallet is closed, use `update-storage` channel.
+
 ---
 
 ## Incoming channels (to modules)
@@ -214,7 +231,7 @@ NEXUS.ipc.listenOnce('initialize', initialData => {
 
 - `moduleState`
 
-  The last state object that your module has previously stored via the `update-state` IPC message.
+  The last state object that your module has previously stored via the [`update-state` channel](#update-state-channel).
 
 - `storageData`
 
@@ -262,7 +279,7 @@ NEXUS.ipc.listen('core-info-updated', coreInfo => {
 
 If the previous `rpc-call` IPC message did not include a valid `callId` option, the result channel would be just `rpc-return`.
 
-If the previous `rpc-call` IPC message did include a valid `callId` option, the result channel would be `rpc-return:<id>`. For example if you call `send('rpc-call', { callId: 10, ... }`, you should then call `listenOnce('rpc-return:10', (err, result) => { ... })`.
+If the previous `rpc-call` IPC message did include a valid `callId` option, the result channel would be `rpc-return:<callId>`. For example if you call `send('rpc-call', { callId: 10, ... }`, you should then call `listenOnce('rpc-return:10', (err, result) => { ... })`.
 
 Example usage:
 
@@ -287,7 +304,7 @@ NEXUS.ipc.send('rpc-call', {
 
 If the previous `confirm` IPC message did not include a valid `confirmationId` option, the result channel would be just `confirm-answer`.
 
-If the previous `confirm` IPC message did include a valid `confirmationId` option, the result channel would be `confirm-answer:<id>`. For example if you call `send('confirm', { confirmationId: 14, ... }`, you should then call `listenOnce('confirm-answer:14', (err, result) => { ... })`.
+If the previous `confirm` IPC message did include a valid `confirmationId` option, the result channel would be `confirm-answer:<confirmationId>`. For example if you call `send('confirm', { confirmationId: 14, ... }`, you should then call `listenOnce('confirm-answer:14', (err, result) => { ... })`.
 
 Example usage:
 
