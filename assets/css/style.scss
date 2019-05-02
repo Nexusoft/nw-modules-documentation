@@ -50,10 +50,6 @@ section {
       padding-left: 0;
     }
 
-    .info {
-      color: #b6b6b6;
-    }
-
     a {
       padding: 3px 6px;
       display: block;
@@ -63,5 +59,9 @@ section {
       font-weight: bold;
       background: #333;
     }
+  }
+
+  .info {
+    color: #b6b6b6;
   }
 }
