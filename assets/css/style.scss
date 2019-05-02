@@ -44,10 +44,14 @@ section {
   }
 
   & > nav {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
     & > ul {
       padding-left: 0;
+    }
+
+    .info {
+      color: #b6b6b6;
     }
   }
   

@@ -14,7 +14,10 @@
     </ul>
   </nav>
 
-  <p>Current specification version: 0.1.0</p>
-
-  <p>Contributions are welcome. If you want to contribute to the documentation, fork the [repository]({{ repository.html_url }}) and create pull requests.</p>
+  <p class="info">Current specification version: **0.1.0**</p>
+  
+  <p class="info">Contributions are welcome.<br/>If you want to contribute to this documentation, fork the [repository]({{ site.github.public_repositories }}) and create pull requests.</p>
+  {% for repository in site.github.public_repositories %}
+    * [{{ repository.name }}]({{ repository.html_url }})
+  {% endfor %}
 </div>
