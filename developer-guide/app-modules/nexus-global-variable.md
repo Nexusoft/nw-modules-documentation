@@ -51,7 +51,6 @@ const {
     send,
     listen,
     listenOnce,
-    stopListening,
   },
 } = NEXUS
 ```
