@@ -16,6 +16,8 @@
       url: /developer-guide/repo_info.json.html
     - title: Module icon
       url: /developer-guide/module-icon.html
+    - title: Repository verification
+      url: /developer-guide/repo-verification.html
     - title: app (module type)
       url: /developer-guide/app-modules/
       sublinks:
