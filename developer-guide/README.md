@@ -19,7 +19,7 @@ However, if you aim for the best convenience, compatibility, and the most consis
 
 If you use the libraries listed above in your module, you won't need to add them to your `package.json` dependencies, because the base Nexus Wallet will pass these libraries to your module through an injected global variable, along with some utility functions and components built on these libraries (mostly React and Emotion). As a result, you will be able to reduce your module size by not having to include these libraries in your module, speed up your development by not having to reinvent the wheel, and ensure a more consistent UI with the base wallet by reusing the same UI components that the base wallet uses.
 
-## Requirements for a valid module
+## What is required for a module to be valid?
 
 A module (either in a directory or packaged as an archive) is considered valid if it meets all the requirements below:
 
@@ -28,7 +28,7 @@ A module (either in a directory or packaged as an archive) is considered valid i
 3. A well-formed and valid [repo_info.json](./repo_info.json.md) file in the top level of your module directory.
 4. The repository specified in `repo_info.json` must exist and publicly accessible (non-private).
 
-If your module is not valid, Nexus Wallet users will not be able to install it.
+If your module is not valid, Nexus Wallet users **will not be able to install it**. So you should ensure all the above conditions are satisfied before distributing your module.
 
 If somehow a user has already installed your module, but your module becomes invalid at the moment user opens the wallet (for example your repository is then deleted), your module will not be loaded.
 
@@ -38,7 +38,9 @@ Module types are defined in the `type` field of each module's [nxs_package.json]
 
 At the moment there is only one supported module type that is [`app`](./app-modules). More types, such as `theme`, will likely be added in the future.
 
-## Get your source code verified
+## Repository verification process
+
+
 
 ## Packaging
 

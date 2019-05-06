@@ -14,7 +14,7 @@ As the name suggests, `nxs_package.json` is inspired by [`npm`'s `package.json`]
 - Type: `string`
 - Constraints: only accepts lowercase letters, digits, underscores (`_`) and dashes (`-`)
 
-This will be used as the unique identifier of your module. If more than one modules with the same `name` are installed in a wallet, only one of them will work. Currently there hasn't been a central "module store" that hosts all the Nexus Wallet Modules available, avoiding naming collision must be taken care by the module developers yourself. So when you need to name your module, please be aware if there is already an existing module with the same name.
+This will be used as the **unique identifier** of your module. If more than one modules with the same `name` are installed in a wallet, only one of them will work. Currently there hasn't been a central "module store" that hosts all the Nexus Wallet Modules available, so naming collision must be taken care by the module developers yourself. When you need to name your module, please do some basic searching to see if there is already an existing module with the same name on the public.
 
 ### `displayName`
 
