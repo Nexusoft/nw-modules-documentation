@@ -6,7 +6,7 @@ Repository verification is a mandatory step that you must take after you've comp
 
 Everytime you release new version of your module, you must go though the repository verification process again.
 
-## Repository verification process
+## Verification process
 
 Before getting your repository verified, please ensure these prerequisites conditions are met:
 
@@ -22,6 +22,6 @@ When all the above prerequisites are met, send an email to [TBD] along with the 
 
 3. The URL to your online repository AND the full hash of the specific commit in your repository that you compiled your module from (this will usually be the latest commit).
 
-When the verification process completes successfully, you will receive an email with a [repo_info.json](./repo_info.json.md) that contains a signature from Nexus team. You should then copy this `repo_info.json` file into the root directory of your module before distributing, so that your module becomes valid and can be installed by Nexus Wallet users.
+When the verification process completes successfully, you will receive an email with a [`repo_info.json` file](./repo_info.json.md) that contains a signature from Nexus team. You should then copy this `repo_info.json` file into the root directory of your module before distributing, so that your module becomes valid and can be installed by Nexus Wallet users.
 
 Please note that although this verification doesn't verify if your module contains malicious/faulty code or not, **Nexus team still has the sole right to reject your application or to request for changes if they detect something bad or undesirable in the code**.

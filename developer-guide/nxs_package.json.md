@@ -58,13 +58,13 @@ The type of your module. This decides how your module will be used in the wallet
 - Type: `object`
 - Constraints:
   - Available options:
-```
-{
-  // Whether the module's webview is wrapped inside a panel
-  // Only available with `app` type modules
-  wrapInPanel: boolean
-}
-```
+  ```
+  {
+    // Whether the module's webview is wrapped inside a panel
+    // Only available with `app` type modules
+    wrapInPanel: boolean
+  }
+  ```
 
 ### `files`
 
@@ -107,12 +107,12 @@ Path to the icon of you module. See [Module icon](./module-icon.md) for more det
 - Type: `object`
 - Constraints:
   - Object schema:
-```
-{
-  name: string,
-  email: string
-}
-```
+  ```
+  {
+    name: string,
+    email: string
+  }
+  ```
   - `name` field is required
 
 Information about the module's author.

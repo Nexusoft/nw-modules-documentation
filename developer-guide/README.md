@@ -23,9 +23,9 @@ If you use the libraries listed above in your module, you won't need to add them
 
 A module (either in a directory or packaged as an archive) is considered valid if it meets all the requirements below:
 
-1. A well-formed and valid [nxs_package.json](./nxs_package.json.md) file in the top level of your module directory.
+1. A well-formed and valid [`nxs_package.json` file](./nxs_package.json.md) in the top level of your module directory.
 2. All the files that are listed in `files` field of `nxs_package.json` must exist.
-3. A well-formed and valid [repo_info.json](./repo_info.json.md) file in the top level of your module directory.
+3. A well-formed and valid [`repo_info.json` file](./repo_info.json.md) in the top level of your module directory.
 4. The repository specified in `repo_info.json` must exist and publicly accessible (non-private).
 
 If your module is not valid, Nexus Wallet users **will not be able to install it**. So you should ensure all the above conditions are satisfied before distributing your module.
