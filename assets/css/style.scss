@@ -9,6 +9,10 @@ code.highlighter-rouge {
   font-size: 0.93em;
 }
 
+img + em {
+  text-align: center;
+}
+
 .wrapper {
   max-width: 960px;
   display: flex;
