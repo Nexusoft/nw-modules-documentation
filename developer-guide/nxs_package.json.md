@@ -71,9 +71,9 @@ The type of your module. This decides how your module will be used in the wallet
 - **Mandatory**
 - Type: `string[]`
 - Constraints:
-
-  - All elements are [internal file paths](#internal-file-paths)
+  - Elements must be valid [internal file paths](#internal-file-paths)
   - Cannot have the same path with one of the following files: `nxs_package.json`, `repo_info.json`, `storage.json`
+  - All listed files must exist
 
 This is where you should list ALL the files needed to run your module (without wildcards). Only those files that present in this list will be copied over when users install your module their wallets, so please don't miss any file.
 
