@@ -37,9 +37,9 @@ Module types are defined in the `type` field of each module's [nxs_package.json]
 
 At the moment there is only one supported module type that is [`app`](./app-modules). More types, such as `theme`, will likely be added in the future.
 
-## Repository verification process
+## Get your repository verified
 
-
+When you've completed your module development, you need to get your source code repository verified before you can distribute your module to users. This verification process will check if the repository you provide is truly the source code of the module package you distribute. See [Repository verification](./repo-verification.md) for more details.
 
 ## Packaging
 
