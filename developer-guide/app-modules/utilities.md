@@ -7,19 +7,19 @@ Notes about the utilities function
 
 ### Utilities API references
 
-- [`showNotification`](#showNotification)
-- [`showErrorDialog`](#showErrorDialog)
-- [`showSuccessDialog`](#showSuccessDialog)
-- [`updateState`](#updateState)
-- [`updateStorage`](#updateStorage)
-- [`onceInitialize`](#onceInitialize)
-- [`onThemeUpdated`](#onThemeUpdated)
-- [`onSettingsUpdate`](#onSettingsUpdate)
-- [`onCoreInfoUpdated`](#onCoreInfoUpdated)
-- [`rpcCall` and `onceRpcReturn`](#rpcCall-and-onceRpcReturn)
-- [`proxyRequest` and `onceProxyResponse`](#proxyRequest-and-onceProxyResponse)
-- [`confirm` and `onceConfirmAnswer`](#confirm-and-onceConfirmAnswer)
-- [`copyToClipboard`](#copyToClipboard)
+- [`showNotification`](#shownotification)
+- [`showErrorDialog`](#showerrordialog)
+- [`showSuccessDialog`](#showsuccessdialog)
+- [`updateState`](#updatestate)
+- [`updateStorage`](#updatestorage)
+- [`onceInitialize`](#onceinitialize)
+- [`onThemeUpdated`](#onthemeupdated)
+- [`onSettingsUpdate`](#onsettingsupdate)
+- [`onCoreInfoUpdated`](#oncoreinfoupdated)
+- [`rpcCall` and `onceRpcReturn`](#rpccall-and-oncerpcreturn)
+- [`proxyRequest` and `onceProxyResponse`](#proxyrequest-and-onceproxyresponse)
+- [`confirm` and `onceConfirmAnswer`](#confirm-and-onceconfirmanswer)
+- [`copyToClipboard`](#copytoclipboard)
 - [`color`](#color)
 
 ---
@@ -70,7 +70,7 @@ Saves an arbitrary data object (usually your module's state data) into the base 
 
 Because all your module's code is embedded inside a [`<webview>` tag](./README.md#webview-tag), normally when user navigates away from your module page, the `<webview>` tag will be unmounted and all your module state will be lost. The next time user navigates back to your module, user will have to do everything from the beginning. Therefore you might want to save your module's state into the base wallet by interval or everytime when it's changed.
 
-Using the `updateState` utility, the next time user navigates back to your module, the **last** data object that you've saved with `updateState` will be passed back to your module via [`onceInitialize` listener](#onceInitialize).
+Using the `updateState` utility, the next time user navigates back to your module, the **last** data object that you've saved with `updateState` will be passed back to your module via [`onceInitialize` listener](#onceinitialize).
 
 ```js
 updateState(state: object)
@@ -78,7 +78,7 @@ updateState(state: object)
 
 - `state`: object - Any data object that you want to save.
 
-Note: This data will not be persisted when the wallet is closed. In order to persist data even when the wallet is closed, use [`updateStorage` utilities](#updateStorage) instead.
+Note: This data will not be persisted when the wallet is closed. In order to persist data even when the wallet is closed, use [`updateStorage` utilities](#updatestorage) instead.
 
 ### `updateStorage` channel
 
@@ -86,7 +86,7 @@ Saves an arbitrary data object (usually your module's settings) into a file so t
 
 Data will be saved into a file named `storage.json` inside your module's directory, therefore each module has its own storage, not shared with any other. Maximum size of the data that can be stored in `storage.json` is roughly 1MB.
 
-Using the `updateStorage` utility, the next time user navigates back to your module, the **last** data object that you've saved with `updateStorage` will be passed back to your module via [`onceInitialize` listener](#onceInitialize).
+Using the `updateStorage` utility, the next time user navigates back to your module, the **last** data object that you've saved with `updateStorage` will be passed back to your module via [`onceInitialize` listener](#onceinitialize).
 
 ```js
 send(`updateStorage`, data: object)
@@ -94,7 +94,7 @@ send(`updateStorage`, data: object)
 
 - `data`: object - Any data object that you want to save.
 
-Note: This will write data into a file on user's hard drive, so avoid calling this on highly frequent events such as on user's key stroke. For the data that doesn't need to be persisted when the wallet is closed (textbox content for example), use [`updateState` utilities](#updateState) instead.
+Note: This will write data into a file on user's hard drive, so avoid calling this on highly frequent events such as on user's key stroke. For the data that doesn't need to be persisted when the wallet is closed (textbox content for example), use [`updateState` utilities](#updatestate) instead.
 
 ### `onceInitialize`
 
@@ -116,17 +116,12 @@ const listener = initialData => {
 NEXUS.utilities.onceInitialize(listener)
 ```
 
-- initialData: object
-
-  - `theme`: object - See [`onThemeUpdated`](#onThemeUpdated) for more details
-
-  - `settings`: object - See [`onSettingsUpdated`](#onSettingsUpdated) for more details
-
-  - `coreInfo`: object - See [`onCoreInfoUpdated`](#onCoreInfoUpdated) for more details
-
-  - `moduleState`: object - The last state object that your module has previously stored via the [`updateState` utility](#updateState).
-
-  - `storageData`: object - The last data object that your module has previously stored via the [`updateStorage` utility](#updateStorage).
+- `initialData`: object
+  - `theme`: object - See [`onThemeUpdated`](#onthemeupdated) for more details
+  - `settings`: object - See [`onSettingsUpdated`](#onsettingsupdated) for more details
+  - `coreInfo`: object - See [`onCoreInfoUpdated`](#oncoreinfoupdated) for more details
+  - `moduleState`: object - The last state object that your module has previously stored via the [`updateState` utility](#updatestate).
+  - `storageData`: object - The last data object that your module has previously stored via the [`updateStorage` utility](#updatestorage).
 
 ### `onThemeUpdated`
 
@@ -195,7 +190,7 @@ NEXUS.utilities.onCoreInfoUpdated(listener)
 
 ### `rpcCall` and `onceRpcReturn`
 
-`rpcCall` sends an [RPC call](https://en.wikipedia.org/wiki/Remote_procedure_call) to Nexus core, and `onceRpcReturn` gets you the result.
+`rpcCall` function sends an [RPC call](https://en.wikipedia.org/wiki/Remote_procedure_call) to Nexus core, and `onceRpcReturn` function returns the result to your module.
 
 `onceRpcReturn` will be called only once for each `rpcCall` call.
 
@@ -212,7 +207,7 @@ onceRpcReturn(listener: function, callId: number|string)
 ```
 
 - `listener`: function(err: any, result: any) - This function will be called when the RPC call completes either with `err` or `result`.
-- `callId`: number\|string - The **unique** identifier for the call that was passed to the corresponding `rpcCall` call.
+- `callId`: number\|string - The **unique** identifier for the call that was passed to the corresponding `rpcCall` function.
 
 Example usage:
 
@@ -229,9 +224,47 @@ NEXUS.utilities.onceRpcReturn(listener, callId)
 NEXUS.utilities.rpcCall('getaccountaddress', ['default'], callId)
 ```
 
+### `proxyRequest` and `onceProxyResponse`
+
+`proxyRequest` function indirectly sends out a HTTP/HTTPS request proxied by the base wallet, and `onceProxyResponse` function returns back the response (or error) to your module.
+
+Normally, you don't need to call this function to send out a request from your module. You can import an `npm` package like `request` or `axios` and make HTTP requests with them as usual. However, if the server you're sending to doesn't accept CORS (Cross-origin resource sharing) requests from your module and you're having problems with CORS-related issues, then you might want to use `proxyRequest` function to bypass this. Because the base wallet isn't restricted by the same origin rule, it's free to send requests to servers even when they don't support CORS, you can use the base wallet as a proxy server for modules with `proxyRequest` function.
+
+`onceProxyResponse` will be called only once for each `proxyRequest` call.
+
+```js
+proxyRequest(url: string, options: object, requestId: number|string)
+```
+
+- `url`: string - The request URL, must be either `http://` or `https://`. 
+- `options`: object - Request options, as specified in [`axios` documentation](https://github.com/axios/axios). Keep in mind that function options won't work here.
+- `requestId`: number\|string - An **unique** identifier for the call. `proxyRequest`'s result will be passed to the corresponding `onceProxyResponse` listener which passed the same `requestId`.
+
+```js
+onceProxyResponse(listener: function, requestId: number|string)
+```
+
+- `listener`: function(err: any, response: any) - This function will be called when the request completes with either `err` or `response`.
+- `requestId`: number\|string - The **unique** identifier for the request that was passed to the corresponding `proxyRequest` function.
+
+Example usage:
+
+```js
+const requestId = generateUniqueId()
+const listener = (err, result) => {
+  if (err) {
+    // handle error...
+  } else {
+    // handle result...
+  }
+}
+NEXUS.utilities.onceProxyResponse(listener, requestId)
+NEXUS.utilities.proxyRequest('getaccountaddress', ['default'], requestId)
+```
+
 ### `confirm` and `onceConfirmAnswer`
 
-`confirm` displays a confirmation dialog to the user. The confirmation dialog contains a question and two buttons for "Yes" and "No" answers, and `onceConfirmAnswer` gets you the answer user selected (either `true` for "Yes" or `false` for "No").
+`confirm` function displays a confirmation dialog to the user. The confirmation dialog contains a question and two buttons for "Yes" and "No" answers, and `onceConfirmAnswer` function returns the answer user selected (either `true` for "Yes" or `false` for "No") to your module.
 
 `onceConfirmAnswer` will be called only once for each `confirm` call.
 
@@ -239,7 +272,7 @@ NEXUS.utilities.rpcCall('getaccountaddress', ['default'], callId)
 confirm(options: object, confirmationId: number|string)
 ```
 
-- `options`: object - Available options:
+- `options`: object
   - `question`: string - The question (on larger text) to display on the confirmation dialog.
   - `note`: string (optional) - The added information (on smaller text) to display on the confirmation dialog under the question.
   - `labelYes`: string (default: `'Yes'`) - The custom label for the "Yes" button, which will send back the result `true` when chosen by user.
@@ -253,7 +286,7 @@ onceConfirmAnswer(listener: function, confirmationId: number|string)
 ```
 
 - `listener`: function(agreed: boolean) - This function will be called when user selects the answer - `true` if user selected "Yes" or `false` if user selected "No".
-- `confirmationId`: number\|string - The **unique** identifier for the confirmation that was passed to the corresponding `confirm` call.
+- `confirmationId`: number\|string - The **unique** identifier for the confirmation that was passed to the corresponding `confirm` function.
 
 Example usage:
 
