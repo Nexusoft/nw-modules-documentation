@@ -20,7 +20,7 @@ By default, Nexus Wallet will look for a file named `index.html` in your module'
 
 ## `wrapInPanel` option
 
-By default, module's `webview` will take up the whole area between the header and the navigation bar of your wallet (see image below). If you want to wrap your module UI in a `Panel` component, you'll have to render the `Panel` component in your module code yourself. This way you'll have a greater control on your UI, you can display a custom title on your `Panel`, add some buttons to right side of the `Panel`'s header, or customize it however you like. 
+By default, module's `webview` will take up the whole area between the header and the navigation bar of your wallet (see image below). If you want to wrap your module UI in a `Panel` component, you'll have to render the `Panel` component in your module code yourself. This way you'll have a greater control on your UI, you can display a custom title on your `Panel`, add some buttons to right side of the `Panel`'s header, or don't use `Panel` at all and customize it however you like. 
 
 ![webview's area by default](./webview.JPG)
 *webview's area by default*

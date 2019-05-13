@@ -6,4 +6,4 @@ If you're a Nexus Wallet user and looking for a guide to install a Nexus Wallet 
 
 If you're a developer and looking for a guide to write your own module, see **[Developer Guide](./developer-guide)**
 
-If you want to learn more about the security concerns and the security model that's applied in Nexus Wallet Modules, see **[Module Security](./security.md)**
+If you care about security and want to learn more about the security mechanisms that we've employed for Nexus Wallet Modules, see **[Module Security](./security.md)**

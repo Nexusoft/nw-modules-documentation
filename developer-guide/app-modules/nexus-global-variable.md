@@ -18,6 +18,8 @@ The current version of [Nexus Wallet Module Specifications](../module-specificat
 const { specVersion } = NEXUS
 ```
 
+---
+
 ## `libraries`
 
 `libraries` object provides the most commonly used third-party js libraries that's also used in the base wallet. If you use one or more of these libraries, you can grab them from `NEXUS.libraries` without having to add them as a dependency of your module, reducing your module's distributed package size.
@@ -41,21 +43,7 @@ const {
 } = NEXUS
 ```
 
-## `ipc`
-
-`ipc` object provides the methods that helps your module communicate with the base wallet, that means sending and receiving IPC messages to/from the base wallet.
-
-```js
-const {
-  ipc: {
-    send,
-    listen,
-    listenOnce,
-  },
-} = NEXUS
-```
-
-See [IPC messages API](./ipc-messages.md) for more details
+---
 
 ## `components`
 
@@ -83,15 +71,37 @@ const {
 
 See [React components](./react-components.md) for more details.
 
+
+
+---
+
 ## `utilities`
 
-`utilities` object provides some utility functions that might be useful for your module code.
+`utilities` object provides functions that helps your module interact with the base wallet, manipulate color values, copy text to clipboard, etc...
 
 ```js
 const {
   utilities: {
-    color,
+    showNotification,
+    showErrorDialog,
+    showSuccessDialog,
+    rpcCall,
+    proxyRequest,
+    confirm,
+    updateState,
+    updateStorage,
+    onceInitialize,
+    onThemeUpdated,
+    onSettingsUpdate,
+    onCoreInfoUpdated,
+    onceRpcReturn,
+    onceProxyResponse,
+    onceCOnfirmAnswer,
     copyToClipboard,
+    color,
   }
 } = NEXUS
 ```
+
+See [utilities](./utilities.md) for more details
+
