@@ -4,7 +4,6 @@
 
 - File schemas - including schemas for [nxs_package.json](./nxs_package.json.md) and [repo_info.json](./repo_info.json.md).
 - [NEXUS global variable](./app-modules/nexus-global-variable.md).
-- [IPC message APIs](./app-modules/ipc-messages.md).
 
 ## Specifications versions
 
