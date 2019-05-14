@@ -14,6 +14,10 @@ img + em {
   text-align: center;
 }
 
+#header {
+  position: static;
+}
+
 #header li.fork {
   position: absolute;
 }
