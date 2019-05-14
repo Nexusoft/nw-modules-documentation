@@ -14,7 +14,12 @@ img + em {
   text-align: center;
 }
 
+#header li.fork {
+  position: absolute;
+}
+
 .wrapper {
+  margin-top: -64px;
   max-width: 960px;
   display: flex;
   justify-content: space-between;
@@ -70,3 +75,5 @@ section {
     color: #b6b6b6;
   }
 }
+
+
