@@ -121,6 +121,7 @@ const {
 - [`onThemeUpdated`](#onthemeupdated)
 - [`onSettingsUpdated`](#onsettingsupdated)
 - [`onCoreInfoUpdated`](#oncoreinfoupdated)
+- [`sendNXS`](#sendnxs)
 - [`rpcCall` and `onceRpcReturn`](#rpccall-and-oncerpcreturn)
 - [`proxyRequest` and `onceProxyResponse`](#proxyrequest-and-onceproxyresponse)
 - [`confirm` and `onceConfirmAnswer`](#confirm-and-onceconfirmanswer)
@@ -222,11 +223,11 @@ NEXUS.utilities.onceInitialize(listener)
 ```
 
 - `initialData`: object
-  - `theme`: object - See [`onThemeUpdated`](#onthemeupdated) for more details
-  - `settings`: object - See [`onSettingsUpdated`](#onsettingsupdatedd) for more details
-  - `coreInfo`: object - See [`onCoreInfoUpdated`](#oncoreinfoupdated) for more details
-  - `moduleState`: object - The last state object that your module has previously stored via the [`updateState` utility](#updatestate).
-  - `storageData`: object - The last data object that your module has previously stored via the [`updateStorage` utility](#updatestorage).
+  - `initialData.theme`: object - See [`onThemeUpdated`](#onthemeupdated) for more details
+  - `initialData.settings`: object - See [`onSettingsUpdated`](#onsettingsupdatedd) for more details
+  - `initialData.coreInfo`: object - See [`onCoreInfoUpdated`](#oncoreinfoupdated) for more details
+  - `initialData.moduleState`: object - The last state object that your module has previously stored via [`updateState` function](#updatestate).
+  - `initialData.storageData`: object - The last data object that your module has previously stored via [`updateStorage` function](#updatestorage).
 
 ### `onThemeUpdated`
 
@@ -292,6 +293,18 @@ NEXUS.utilities.onCoreInfoUpdated(listener)
 ```
 
 - `coreInfo`: object - Information that the Nexus core returned from `getinfo` RPC calls which are called at regular interval. What's contained inside `coreInfo` depends on the core that the Nexus Wallet is using.
+
+### `sendNXS`
+
+For security reasons, this function **doesn't send out NXS directly**. It only **redirects** user to the built in Send NXS page with the recipient addresses, send amount, and the transaction message filled, so user can manually click Send to complete the transaction.
+
+```js
+sendNXS(recipients: array, message: string)
+```
+
+- `recipients`: array - An array of objects that contain recipient addresses and the NXS amount to send to the corresponding address.
+  - `recipients[].address`: string - Recipient's Nexus address to send to.
+  - `recipients[].amount`: string - Amount to send.
 
 ### `rpcCall` and `onceRpcReturn`
 
@@ -420,12 +433,12 @@ confirm(options: object, confirmationId: number|string)
 ```
 
 - `options`: object
-  - `question`: string - The question (on larger text) to display on the confirmation dialog.
-  - `note`: string (optional) - The added information (on smaller text) to display on the confirmation dialog under the question.
-  - `labelYes`: string (default: `'Yes'`) - The custom label for the "Yes" button, which will send back the result `true` when chosen by user.
-  - `skinYes`: string (default: `'primary'`) - The button skin for the "Yes" button. List of available values for button skin can be found here (coming soon).
-  - `labelNo`: string (default: `'No'`) - The custom label for the "No" button, which will send back the result `false` when chosen by user.
-  - `skinNo`: string (default: `'default'`) - The button skin for the "No" button. List of available values for button skin can be found here (coming soon).
+  - `options.question`: string - The question (on larger text) to display on the confirmation dialog.
+  - `options.note`: string (optional) - The added information (on smaller text) to display on the confirmation dialog under the question.
+  - `options.labelYes`: string (default: `'Yes'`) - The custom label for the "Yes" button, which will send back the result `true` when chosen by user.
+  - `options.skinYes`: string (default: `'primary'`) - The button skin for the "Yes" button. List of available values for button skin can be found here (coming soon).
+  - `options.labelNo`: string (default: `'No'`) - The custom label for the "No" button, which will send back the result `false` when chosen by user.
+  - `options.skinNo`: string (default: `'default'`) - The button skin for the "No" button. List of available values for button skin can be found here (coming soon).
 - `confirmationId`: number\|string - An **unique** identifier for the confirmation. `confirm`'s result will be passed to the corresponding `onceConfirmAnswer` listener which passed the same `confirmationId`.
 
 ```js
