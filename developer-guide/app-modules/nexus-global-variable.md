@@ -303,9 +303,51 @@ NEXUS.utilities.onCoreInfoUpdated(listener)
 rpcCall(command: string, params: array, callId: number|string)
 ```
 
-- `command`: string - A valid command that will be sent to Nexus core (see Nexus core documentation for list of all available commands).
+- `command`: string - A valid command that will be sent to Nexus core (see Nexus core documentation for list of all available commands). There's a whitelist of commands that is allowed to be called (see the full list below).
 - `params`: array - List of all params that will be passed along with the command.
 - `callId`: number\|string - An **unique** identifier for the call. `rpcCall`'s result will be passed to the corresponding `onceRpcReturn` listener which passed the same `callId`.
+
+RPC command whitelist:
+
+```
+checkwallet
+getaccount
+getaccountaddress
+getaddressesbyaccount
+getbalance
+getblock
+getblockcount
+getblockhash
+getblocknumber
+getconnectioncount
+getdifficulty
+getinfo
+getmininginfo
+getmoneysupply
+getnetworkhashps
+getnetworkpps
+getnetworktrustkeys
+getnewaddress
+getpeerinfo
+getrawtransaction
+getreceivedbyaccount
+getreceivedbyaddress
+getsupplyrates
+gettransaction
+help
+isorphan
+listaccounts
+listaddresses
+listreceivedbyaccount
+listreceivedbyaddress
+listsinceblock
+listtransactions
+listtrustkeys
+listunspent
+unspentbalance
+validateaddress
+verifymessage
+```
 
 ```js
 onceRpcReturn(listener: function, callId: number|string)
