@@ -495,8 +495,10 @@ color.mix(color1, color2, value)
 color.isLight(color)
 color.isDark(color)
 color.toHex(color)
-// This is a special function that is intended to only be used together with the wallet's `theme` object.
-// You probably would not need to use this function in other cases.
-// For usage example, check out `react-redux-module-example` repository https://github.com/Nexusoft/react_redux_module_example
+// This is a special function that is intended to only be used together with
+// the wallet's `theme` object. You would probably not need to use this function
+// in most other cases.
+// For usage example, check out `react-redux-module-example` repository:
+// https://github.com/Nexusoft/react_redux_module_example
 color.getMixer(color1, color2)
 ```
