@@ -5,13 +5,14 @@
 <!-- Then we build the nav bar. -->
 <div class="side-bar">
   <nav>
-    <h3>Table of contents</h3>
-
+    {% for section in site.data.navigation %}
+    <h3>{{ section.title }}</h3>
     <ul>
-      {% for entry in site.data.navigation %}
+      {% for entry in section.items %}
         {% include nav-item.html %}
       {% endfor %}
     </ul>
+    {% endfor %}
   </nav>
 
   <p class="info">Current <a href="{{ site.baseurl }}/developer-guide/module-specifications.html#specifications-versions">spec version</a>: <strong>0.1.0</strong></p>
