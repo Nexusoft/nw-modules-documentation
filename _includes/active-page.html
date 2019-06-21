@@ -1,4 +1,4 @@
-{% for entry in entries %}
+<!-- {% for entry in entries %}
   {% if entry.url == page.url %}
     {% assign active_page = entry.url %}
     {% break %}
@@ -9,5 +9,18 @@
   {% if entry.sublinks %}
     {% assign entries = entry.sublinks %}
     {% include active-page.html %}
+  {% endif %}
+{% endfor %} -->
+
+{% for section in site.data.navigation %}
+  {% for entry in section.items %}
+    {% if entry.url == page.url %}
+      {% assign active_page = entry.url %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  {% if active_page %}
+    {% break %}
   {% endif %}
 {% endfor %}

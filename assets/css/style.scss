@@ -59,6 +59,7 @@ section {
 
   & > nav {
     margin-bottom: 30px;
+    display: block !important; // override theme's display: none set on mobile
 
     & > ul {
       padding-left: 0;
@@ -66,7 +67,7 @@ section {
     }
 
     a {
-      padding: 3px 0;
+      padding: 3px 0; // 3px 6px;
       display: block;
     }
   
