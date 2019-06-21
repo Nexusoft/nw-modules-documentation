@@ -122,9 +122,9 @@ const {
 - [`onSettingsUpdated`](#onsettingsupdated)
 - [`onCoreInfoUpdated`](#oncoreinfoupdated)
 - [`sendNXS`](#sendnxs)
-- [`rpcCall` and `onceRpcReturn`](#rpccall-and-oncerpcreturn)
-- [`proxyRequest` and `onceProxyResponse`](#proxyrequest-and-onceproxyresponse)
-- [`confirm` and `onceConfirmAnswer`](#confirm-and-onceconfirmanswer)
+- [`rpcCall`](#rpccall)
+- [`proxyRequest`](#proxyrequest)
+- [`confirm`](#confirm)
 - [`copyToClipboard`](#copytoclipboard)
 - [`color`](#color)
 
@@ -306,19 +306,17 @@ sendNXS(recipients: array, message: string)
   - `recipients[].address`: string - Recipient's Nexus address to send to.
   - `recipients[].amount`: string - Amount to send.
 
-### `rpcCall` and `onceRpcReturn`
+### `rpcCall`
 
-`rpcCall` function sends an [RPC call](https://en.wikipedia.org/wiki/Remote_procedure_call) to Nexus core, and `onceRpcReturn` function returns the result to your module.
-
-`onceRpcReturn` will be called only once for each `rpcCall` call.
+`rpcCall` function sends an [RPC call](https://en.wikipedia.org/wiki/Remote_procedure_call) to Nexus core, and the call result (or error) will be returned to your module via a Promise.
 
 ```js
-rpcCall(command: string, params: array, callId: number|string)
+rpcCall(command: string, params: array) : Promise<object>
 ```
 
 - `command`: string - A valid command that will be sent to Nexus core (see Nexus core documentation for list of all available commands). There's a whitelist of commands that is allowed to be called (see the full list below).
 - `params`: array - List of all params that will be passed along with the command.
-- `callId`: number\|string - An **unique** identifier for the call. `rpcCall`'s result will be passed to the corresponding `onceRpcReturn` listener which passed the same `callId`.
+- Returns a Promise that will be resolved to the RPC call result or rejected with an error.
 
 RPC command whitelist:
 
@@ -363,73 +361,42 @@ verifymessage
 ```
 
 ```js
-onceRpcReturn(listener: function, callId: number|string)
+NEXUS.utilities.rpcCall('getaccountaddress', ['default']).then(result => {
+  // handle result...
+}).catch(err => {
+  // handle error...
+})
 ```
 
-- `listener`: function(err: any, result: any) - This function will be called when the RPC call completes either with `err` or `result`.
-- `callId`: number\|string - The **unique** identifier for the call that was passed to the corresponding `rpcCall` function.
+### `proxyRequest`
 
-Example usage:
-
-```js
-const callId = generateUniqueId()
-const listener = (err, result) => {
-  if (err) {
-    // handle error...
-  } else {
-    // handle result...
-  }
-}
-NEXUS.utilities.onceRpcReturn(listener, callId)
-NEXUS.utilities.rpcCall('getaccountaddress', ['default'], callId)
-```
-
-### `proxyRequest` and `onceProxyResponse`
-
-`proxyRequest` function indirectly sends out a HTTP/HTTPS request proxied by the base wallet, and `onceProxyResponse` function returns back the response (or error) to your module.
+`proxyRequest` function indirectly sends out a HTTP/HTTPS request proxied by the base wallet, and the response (or error) will be returned to your module via a Promise.
 
 Normally, you don't need to call this function to send out a request from your module. You can import an `npm` package like `request` or `axios` and make HTTP requests with them as usual. However, if the server you're sending to doesn't accept CORS (Cross-origin resource sharing) requests from your module and you're having problems with CORS-related issues, then you might want to use `proxyRequest` function to bypass this. Because the base wallet isn't restricted by the same origin rule, it's free to send requests to servers even when they don't support CORS, you can use the base wallet as a proxy server for modules with `proxyRequest` function.
 
-`onceProxyResponse` will be called only once for each `proxyRequest` call.
-
 ```js
-proxyRequest(url: string, options: object, requestId: number|string)
+proxyRequest(url: string, options: object) : Promise<object>
 ```
 
 - `url`: string - The request URL, must be either `http://` or `https://`. 
 - `options`: object - Request options that will be passed to [`axios`](https://github.com/axios/axios), so check out [`axios` documentation](https://github.com/axios/axios) for the full list of valid options. Keep in mind that function options won't work here.
-- `requestId`: number\|string - An **unique** identifier for the call. `proxyRequest`'s result will be passed to the corresponding `onceProxyResponse` listener which passed the same `requestId`.
-
-```js
-onceProxyResponse(listener: function, requestId: number|string)
-```
-
-- `listener`: function(err: any, response: any) - This function will be called when the request completes with either `err` or `response`.
-- `requestId`: number\|string - The **unique** identifier for the request that was passed to the corresponding `proxyRequest` function.
 
 Example usage:
 
 ```js
-const requestId = generateUniqueId()
-const listener = (err, result) => {
-  if (err) {
-    // handle error...
-  } else {
-    // handle result...
-  }
-}
-NEXUS.utilities.onceProxyResponse(listener, requestId)
-NEXUS.utilities.proxyRequest('getaccountaddress', ['default'], requestId)
+NEXUS.utilities.proxyRequest('getaccountaddress', ['default']).then(result => {
+  // handle result...
+}).catch(err => {
+  // handle error...
+})
 ```
 
-### `confirm` and `onceConfirmAnswer`
+### `confirm`
 
-`confirm` function displays a confirmation dialog to the user. The confirmation dialog contains a question and two buttons for "Yes" and "No" answers, and `onceConfirmAnswer` function returns the answer user selected (either `true` for "Yes" or `false` for "No") to your module.
-
-`onceConfirmAnswer` will be called only once for each `confirm` call.
+`confirm` function displays a confirmation dialog to the user. The confirmation dialog contains a question and two buttons for "Yes" and "No" answers, and the answer user selected (either `true` for "Yes" or `false` for "No") will be returned to your module via a Promise.
 
 ```js
-confirm(options: object, confirmationId: number|string)
+confirm(options: object) : Promise<boolean>
 ```
 
 - `options`: object
@@ -439,28 +406,17 @@ confirm(options: object, confirmationId: number|string)
   - `options.skinYes`: string (default: `'primary'`) - The button skin for the "Yes" button. List of available values for button skin can be found here (coming soon).
   - `options.labelNo`: string (default: `'No'`) - The custom label for the "No" button, which will send back the result `false` when chosen by user.
   - `options.skinNo`: string (default: `'default'`) - The button skin for the "No" button. List of available values for button skin can be found here (coming soon).
-- `confirmationId`: number\|string - An **unique** identifier for the confirmation. `confirm`'s result will be passed to the corresponding `onceConfirmAnswer` listener which passed the same `confirmationId`.
-
-```js
-onceConfirmAnswer(listener: function, confirmationId: number|string)
-```
-
-- `listener`: function(agreed: boolean) - This function will be called when user selects the answer - `true` if user selected "Yes" or `false` if user selected "No".
-- `confirmationId`: number\|string - The **unique** identifier for the confirmation that was passed to the corresponding `confirm` function.
 
 Example usage:
 
 ```js
-const confirmationId = generateUniqueId()
-const listener = agreed => {
+NEXUS.utilities.confirm({ /* options... */ }).then(agreed => {
   if (agreed) {
     // proceed...
   } else {
     // cancel the action...
   }
-}
-NEXUS.utilities.onceConfirmAnswer(listener, confirmationId)
-NEXUS.utilities.confirm({ /* options... */ }, confirmationId)
+})
 ```
 
 ### `copyToClipboard`
