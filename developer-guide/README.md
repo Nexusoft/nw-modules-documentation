@@ -55,8 +55,8 @@ One easy way that we recommend is to [create a release on github](https://help.g
 
 Currently there are 3 example modules that you can test run and see how it works or use as a boilerplate for building your own module:
 
-- [minimal_module_example](https://github.com/Nexusoft/minimal_module_example) - A minimal "Hello World" type of module to demonstrate what a simple Nexus Wallet Module needs at minimum.
+- [minimal_module_example](https://github.com/Nexusoft/minimal_module_example) - A minimal "Hello World" type of module to demonstrate what a simple Nexus Wallet Module needs at minimum, written in plain HTML, CSS and Javascript.
 
-- [simple_react_module_example](https://github.com/Nexusoft/simple_react_module_example) - A simple example module using React.
+- [simple_react_module_example](https://github.com/Nexusoft/simple_react_module_example) - A simple example module written in React.
 
-- [react-redux_module_example](https://github.com/Nexusoft/react_redux_module_example) - A little more complex module built on React and Redux, showcasing some advanced features that Nexus Wallet Modules provide.
+- [react-redux_module_example](https://github.com/Nexusoft/react_redux_module_example) - A little more complex module using React and Redux, showcasing some advanced features that Nexus Wallet Modules provide.
