@@ -1,13 +1,13 @@
-# Nexus Wallet Module Specifications
+# Module Specifications
 
-**Nexus Wallet Module Specifications** (or just **Module Specifications** for short) refers to the collection of all the interaction rules and APIs between the base Nexus Wallet and Nexus Wallet Modules. Some examples components of Module Specifications:
+**Module Specifications** refers to the collection of all the interaction rules and APIs between the base Nexus Wallet and Nexus Wallet Modules. Some examples components of Module Specifications:
 
 - File schemas - including schemas for [nxs_package.json](./nxs_package.json.md) and [repo_info.json](./repo_info.json.md).
 - [NEXUS global variable](./app-modules/nexus-global-variable.md).
 
-## Specifications versions
+## Specifications version
 
-**Nexus Wallet Module Specifications** versions (or just **spec versions**) are independent from the Nexus Wallet versions. Sometimes Nexus Wallet gets updated and has a new version but Nexus Wallet Module Specifications remains unchanged and its version stays the same.
+**Nexus Wallet Module Specifications version** (or **spec version** for short) is independent from the Nexus Wallet version. Sometimes Nexus Wallet gets updated and has a new version but Nexus Wallet Module Specifications remains unchanged and its version stays the same.
 
 In your module, you can get the current spec version of user's wallet from the `specVersion` field of the [NEXUS global variable](./injected-global-variable.md).
 
