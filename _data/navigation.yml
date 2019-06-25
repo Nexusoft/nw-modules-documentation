@@ -10,17 +10,17 @@
   items:    
   - title: Getting Started
     url: /developer-guide/
-  - title: Module specifications
-    url: /developer-guide/module-specifications.html
-  - title: nxs_package.json
-    url: /developer-guide/nxs_package.json.html
-  - title: repo_info.json
-    url: /developer-guide/repo_info.json.html
-  - title: Module icon
-    url: /developer-guide/module-icon.html
   - title: app (module type)
     url: /developer-guide/app-modules/
   - title: NEXUS global variable
     url: /developer-guide/app-modules/nexus-global-variable.html
+  - title: nxs_package.json
+    url: /developer-guide/nxs_package.json.html
+  - title: Module specifications
+    url: /developer-guide/module-specifications.html
+  - title: Module icon
+    url: /developer-guide/module-icon.html
   - title: Repository verification
     url: /developer-guide/repo-verification.html
+  - title: repo_info.json
+    url: /developer-guide/repo_info.json.html

@@ -51,9 +51,9 @@ You are free to choose how to deliver your module to your users, either uploadin
 
 One easy way that we recommend is to [create a release on github](https://help.github.com/en/articles/creating-releases), then send the link to your module's release page via your blogs, social media, chat, and other channels that you use.
 
-## Examples and boilerplates
+## Example modules
 
-Currently there are 3 Nexus Wallet Module example repositories that you can also use as boilerplates:
+Currently there are 3 example modules that you can test run and see how it works or use as a boilerplate for building your own module:
 
 - [minimal_module_example](https://github.com/Nexusoft/minimal_module_example) - A minimal "Hello World" type of module to demonstrate what a simple Nexus Wallet Module needs at minimum.
 
