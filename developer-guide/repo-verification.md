@@ -16,7 +16,7 @@ Before getting your repository verified, please ensure these prerequisites condi
 
 - You have included a well-formed and valid [nxs_package.json](./nxs_package.json.md) in your repository.
 
-When all the above prerequisites are met, send an email to [TBD] along with the following information:
+When all the above prerequisites are met, send an email to [Developers](mailto:developer@nexus.io) along with the following information:
 
 1. An archive file (preferably in `.zip` format) that contains your module distribution (files that you'll distribute to users). This should be attached to the email.
 
